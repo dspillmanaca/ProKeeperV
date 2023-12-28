@@ -1,5 +1,6 @@
 import tkinter as tk
-from tkinter import filedialog as fidi
+from tkinter import filedialog
+from PIL import Image, ImageTk
 
 class EntryWithPlaceholder(tk.Entry):
     def __init__(self, master=None, placeholder="PLACEHOLDER", color='grey'):
@@ -27,11 +28,19 @@ class EntryWithPlaceholder(tk.Entry):
         if not self.get():
             self.put_placeholder()
 
+def open_home_mascot():
+    global home_mascot_path
+    home_mascot_path = filedialog.askopenfilename(title="Open Team Image", filetypes=[("PNG Images", "*.png")])
+
+def open_away_mascot():
+    global away_mascot_path
+    away_mascot_path = filedialog.askopenfilename(title="Open Team Image", filetypes=[("PNG Images", "*.png")])
+
 def new_game():
     startup.destroy()
-    new_game_a = tk.Tk()
-    new_game_a.title("New Game Setup")
-    new_game_a.geometry("300x600")
+    new_game = tk.Tk()
+    new_game.title("New Game Setup")
+    new_game.geometry("300x600")
 
     gen_info_label = tk.Label(text="General Information", font=("Arial", 20))
     gen_info_label.pack(padx=5, pady=15)
@@ -55,7 +64,7 @@ def new_game():
     gen_label3 = tk.Label(gen_info_grid, text="Location:", font=("Arial", 12))
     gen_label3.grid(row=2, column=0)
 
-    gen_q3 = tk.Entry(gen_info_grid)
+    gen_q3 = EntryWithPlaceholder(gen_info_grid, "Brownson Arena")
     gen_q3.grid(row=2, column=1)
 
     gen_label4 = tk.Label(gen_info_grid, text="Up Referee:", font=("Arial", 12))
@@ -70,7 +79,30 @@ def new_game():
     gen_q5 = tk.Entry(gen_info_grid)
     gen_q5.grid(row=4, column=1)
 
+    gen_label6 = tk.Label(gen_info_grid, text="Scorekeeper:", font=("Arial", 12))
+    gen_label6.grid(row=5, column=0)
+
+    gen_q6 = tk.Entry(gen_info_grid)
+    gen_q6.grid(row=5, column=1)
+
     gen_info_grid.pack(fill='x')
+
+    or_label = tk.Label(new_game, text="Home Team Location", font=("Arial", 12))
+    or_label.pack(padx=5, pady=5)
+
+    or_buttons_grid = tk.Frame(new_game)
+    or_buttons_grid.columnconfigure(0, weight=1)
+    or_buttons_grid.columnconfigure(1, weight=1)
+
+    or_value = tk.StringVar
+
+    or_left_button = tk.Radiobutton(or_buttons_grid, text="Left", variable=or_value, value="L", indicator=0)
+    or_left_button.grid(row=0, column=0, sticky=tk.W+tk.E, padx=5)
+
+    or_right_button = tk.Radiobutton(or_buttons_grid, text="Right", variable=or_value, value="R", indicator=0)
+    or_right_button.grid(row=0, column=1, sticky=tk.W+tk.E, padx=5)
+
+    or_buttons_grid.pack(fill='x')
 
     home_info_label = tk.Label(text="Home Team", font=("Arial", 20))
     home_info_label.pack(padx=5, pady=15)
@@ -79,29 +111,65 @@ def new_game():
     home_info_grid.columnconfigure(0, weight=1)
     home_info_grid.columnconfigure(1, weight=1)
 
-    home_label1 = tk.Label(home_info_grid, text="Date:", font=("Arial", 12))
+    home_label1 = tk.Label(home_info_grid, text="Team Name:", font=("Arial", 12))
     home_label1.grid(row=0, column=0)
 
-    home_q1 = EntryWithPlaceholder(home_info_grid, "MM/DD/YYYY")
+    home_q1 = EntryWithPlaceholder(home_info_grid, "Central High")
     home_q1.grid(row=0, column=1)
 
-    home_label2 = tk.Label(home_info_grid, text="Time:", font=("Arial", 12))
+    home_label2 = tk.Label(home_info_grid, text="Mascot:", font=("Arial", 12))
     home_label2.grid(row=1, column=0)
 
-    home_q2 = EntryWithPlaceholder(home_info_grid, "HH:MM AM/PM")
-    gen_q2.grid(row=1, column=1)
+    home_q2 = EntryWithPlaceholder(home_info_grid, "Eagles")
+    home_q2.grid(row=1, column=1)
 
-    home_label3 = tk.Label(home_info_grid, text="Location:", font=("Arial", 12))
+    home_label3 = tk.Label(home_info_grid, text="Letter Code:", font=("Arial", 12))
     home_label3.grid(row=2, column=0)
 
-    home_q3 = tk.Entry(home_info_grid)
+    home_q3 = EntryWithPlaceholder(home_info_grid, "CHE")
     home_q3.grid(row=2, column=1)
 
-    gen_label4 = tk.Label(home_info_grid, text="Up Referee:", font=("Arial", 12))
-    gen_label4.grid(row=3, column=0)
+    home_label4 = tk.Label(home_info_grid, text="Upload Logo", font=("Arial", 12))
+    home_label4.grid(row=3, column=0)
 
-    gen_q4 = tk.Entry(home_info_grid)
-    gen_q4.grid(row=3, column=1)
+    home_logo = tk.Button(home_info_grid, text="Upload", font=("Arial", 10), command=open_home_mascot)
+    home_logo.grid(row=3, column=1)
+
+    home_info_grid.pack(fill='x')
+
+    away_info_label = tk.Label(text="Away Team", font=("Arial", 20))
+    away_info_label.pack(padx=5, pady=15)
+
+    away_info_grid = tk.Frame(new_game)
+    away_info_grid.columnconfigure(0, weight=1)
+    away_info_grid.columnconfigure(1, weight=1)
+
+    away_label1 = tk.Label(away_info_grid, text="Team Name:", font=("Arial", 12))
+    away_label1.grid(row=0, column=0)
+
+    away_q1 = EntryWithPlaceholder(away_info_grid, "Colorado Mesa")
+    away_q1.grid(row=0, column=1)
+
+    away_label2 = tk.Label(away_info_grid, text="Mascot:", font=("Arial", 12))
+    away_label2.grid(row=1, column=0)
+
+    away_q2 = EntryWithPlaceholder(away_info_grid, "Mavericks")
+    away_q2.grid(row=1, column=1)
+
+    away_label3 = tk.Label(away_info_grid, text="Letter Code:", font=("Arial", 12))
+    away_label3.grid(row=2, column=0)
+
+    away_q3 = EntryWithPlaceholder(away_info_grid, "CMM")
+    away_q3.grid(row=2, column=1)
+
+    away_label4 = tk.Label(away_info_grid, text="Upload Logo", font=("Arial", 12))
+    away_label4.grid(row=3, column=0)
+
+    away_logo = tk.Button(away_info_grid, text="Upload", font=("Arial", 10), command=open_away_mascot)
+    away_logo.grid(row=3, column=1)
+
+    away_info_grid.pack(fill='x')
+
 
 def load_game():
     print("Holder")
