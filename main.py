@@ -37,25 +37,25 @@ def new_game():
         errors = []
         if len(date_var.get()) == 0:
             errors.append("Date is empty")
-        elif not re.match(r'^[0-1][0-9]/[0-3][0-9]/[0-9]{4}$', date_var.get()):
+        elif not re.match(r'^(0[1-9]|1[0-2])/(0[1-9]|[12][0-9]|3[01])/\d{4}$', date_var.get()):
             errors.append("Invalid date: "+date_var.get())
         if len(time_var.get()) == 0:
             errors.append("Time is empty")
-        elif not re.match(r'^[0-1][0-9]:[0-6][0-9] AM|PM$', time_var.get()):
+        elif not re.match(r'^(0[1-9]|1[0-2]):[0-5][0-9]\s(?:AM|PM)$', time_var.get()):
             errors.append("Invalid time: "+time_var.get())
         if len(location_var.get()) == 0:
             errors.append("Location is empty")
-        elif not re.match(r'^[A-Za-z0-9]+$', location_var.get()):
+        elif not re.match(r'^[\dA-Za-z\'\s\-]+$', location_var.get()):
             errors.append("Invalid characters in Location")
         if len(up_referee_var.get()) == 0:
             errors.append("Up Referee is empty")
-        elif not re.match(r'^[A-Za-z0-9]+$', up_referee_var.get()):
+        elif not re.match(r'^[A-Za-z\'\s\-]+$', up_referee_var.get()):
             errors.append("Invalid characters in Up Referee")
-        if len(down_referee_var.get()) > 0 and not re.match(r'^[A-Za-z0-9]+$', down_referee_var.get()):
+        if len(down_referee_var.get()) > 0 and not re.match(r'^[A-Za-z\'\s\-]+$', down_referee_var.get()):
             errors.append("Invalid characters in Down Referee")
         if len(scorekeeper_var.get()) == 0:
             errors.append("Scorekeeper is empty")
-        elif not re.match(r'^[A-Za-z0-9]+$', scorekeeper_var.get()):
+        elif not re.match(r'^[A-Za-z\'\s\-]+$', scorekeeper_var.get()):
             errors.append("Invalid characters in Scorekeeper")
         if len(home_name_var.get()) == 0:
             errors.append("Home Team Name is empty")
