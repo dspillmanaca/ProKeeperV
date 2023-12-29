@@ -1,7 +1,8 @@
 import tkinter as tk
 from tkinter import filedialog
-from PIL import Image, ImageTk
+# from PIL import Image, ImageTk
 import re
+
 
 def new_game():
     startup.destroy()
@@ -34,27 +35,45 @@ def new_game():
 
     def validate_setup():
         errors = []
-        if not re.match(r'^[0-1]{1}[0-9]{1}\/[0-3]{1}[0-9]{1}\/[0-9]{4}$', date_var.get()):
-            errors.append("Inavlid date: "+date_var.get())
-        elif not re.match(r'^[0-1]{1}[0-9]{1}\:[0-6]{1}[0-9]{1}\ AM|PM$', time_var.get()):
+        if len(date_var.get()) == 0:
+            errors.append("Date is empty")
+        elif not re.match(r'^[0-1][0-9]/[0-3][0-9]/[0-9]{4}$', date_var.get()):
+            errors.append("Invalid date: "+date_var.get())
+        if len(time_var.get()) == 0:
+            errors.append("Time is empty")
+        elif not re.match(r'^[0-1][0-9]:[0-6][0-9] AM|PM$', time_var.get()):
             errors.append("Invalid time: "+time_var.get())
-        elif len(location_var.get()) == 0:
+        if len(location_var.get()) == 0:
             errors.append("Location is empty")
-        elif len(up_referee_var.get()) == 0:
+        elif not re.match(r'^[A-Za-z0-9]+$', location_var.get()):
+            errors.append("Invalid characters in Location")
+        if len(up_referee_var.get()) == 0:
             errors.append("Up Referee is empty")
-        elif len(scorekeeper_var.get()) == 0:
+        elif not re.match(r'^[A-Za-z0-9]+$', up_referee_var.get()):
+            errors.append("Invalid characters in Up Referee")
+        if len(down_referee_var.get()) > 0 and not re.match(r'^[A-Za-z0-9]+$', down_referee_var.get()):
+            errors.append("Invalid characters in Down Referee")
+        if len(scorekeeper_var.get()) == 0:
             errors.append("Scorekeeper is empty")
-        elif len(home_name_var.get()) == 0:
+        elif not re.match(r'^[A-Za-z0-9]+$', scorekeeper_var.get()):
+            errors.append("Invalid characters in Scorekeeper")
+        if len(home_name_var.get()) == 0:
             errors.append("Home Team Name is empty")
-        elif len(home_code_var.get()) == 0:
+        if len(home_code_var.get()) == 0:
             errors.append("Home Code is empty")
-        elif len(away_name_var.get()) == 0:
+        elif not re.match(r'^[A-Z]{3}$', home_code_var.get()):
+            errors.append("Home Code format is invalid: "+home_code_var.get())
+        if len(away_name_var.get()) == 0:
             errors.append("Away Team Name is empty")
-        elif len(away_code_var.get()) == 0:
+        if len(away_code_var.get()) == 0:
             errors.append("Away Code is empty")
+        elif not re.match(r'^[A-Z]{3}$', away_code_var.get()):
+            errors.append("Away Code format is invalid: "+away_code_var.get())
+        if not errors:
+            print("Positive validation holder")
         else:
-            print("Passed")
-        print(errors)
+            print("Negative validation holder")
+            print(errors)
 
     gen_info_label = tk.Label(new_game_setup, text="General Information", font=("Arial", 20))
     gen_info_label.pack(padx=5, pady=15)
@@ -170,8 +189,10 @@ def new_game():
     setup_next_button = tk.Button(new_game_setup, font=("Arial", 10), text="Next", command=validate_setup)
     setup_next_button.pack(fill='x', padx=10, pady=5)
 
+
 def load_game():
     print("Holder")
+
 
 def startup_window():
     global startup
@@ -189,5 +210,6 @@ def startup_window():
     load_game_button.pack(padx=5, pady=10)
 
     startup.mainloop()
+
 
 startup_window()
