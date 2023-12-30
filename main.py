@@ -9,7 +9,7 @@ def new_game_():
     startup.destroy()
     basic_setup = tk.Tk()
     basic_setup.title("New Game Setup")
-    basic_setup.geometry("975x590")
+#    basic_setup.geometry("1x1")
     new_game_setup = tk.Frame()
 
     date_var = tk.StringVar()
@@ -310,21 +310,142 @@ def new_game_():
     home_acap_entry = tk.Entry(home_roster_grid, textvariable=home_acap_var)
     home_acap_entry.grid(column=1, row=3)
 
-    home_lib_e_label = tk.Label(home_roster_grid, text="Libero 1:", font=("Arial", 12))
+    home_lib_e_label = tk.Label(home_roster_grid, text="Libero:", font=("Arial", 12))
     home_lib_e_label.grid(column=0, row=4)
 
     home_lib_e_entry = tk.Entry(home_roster_grid, textvariable=home_lib_e_var)
     home_lib_e_entry.grid(column=1, row=4)
 
-    home_lib_f_label = tk.Label(home_roster_grid, text="Libero 2:", font=("Arial", 12))
+    home_lib_f_label = tk.Label(home_roster_grid, text="Libero:", font=("Arial", 12))
     home_lib_f_label.grid(column=0, row=5)
 
     home_lib_f_entry = tk.Entry(home_roster_grid, textvariable=home_lib_f_var)
     home_lib_f_entry.grid(column=1, row=5)
 
+    home_ps_g_label = tk.Label(home_roster_grid, text="Player:", font=("Arial", 12))
+    home_ps_g_label.grid(column=0, row=6)
+
+    home_ps_g_label = tk.Entry(home_roster_grid, textvariable=home_ps_g_var)
+    home_ps_g_label.grid(column=1, row=6)
+
+    home_ps_h_label = tk.Label(home_roster_grid, text="Player:", font=("Arial", 12))
+    home_ps_h_label.grid(column=0, row=7)
+
+    home_ps_h_label = tk.Entry(home_roster_grid, textvariable=home_ps_h_var)
+    home_ps_h_label.grid(column=1, row=7)
+
+    home_ps_i_label = tk.Label(home_roster_grid, text="Player:", font=("Arial", 12))
+    home_ps_i_label.grid(column=0, row=8)
+
+    home_ps_i_label = tk.Entry(home_roster_grid, textvariable=home_ps_i_var)
+    home_ps_i_label.grid(column=1, row=8)
+
+    home_ps_j_label = tk.Label(home_roster_grid, text="Player:", font=("Arial", 12))
+    home_ps_j_label.grid(column=0, row=9)
+
+    home_ps_j_label = tk.Entry(home_roster_grid, textvariable=home_ps_j_var)
+    home_ps_j_label.grid(column=1, row=9)
+
+    home_ps_k_label = tk.Label(home_roster_grid, text="Player:", font=("Arial", 12))
+    home_ps_k_label.grid(column=0, row=10)
+
+    home_ps_k_label = tk.Entry(home_roster_grid, textvariable=home_ps_k_var)
+    home_ps_k_label.grid(column=1, row=10)
+
+    home_ps_l_label = tk.Label(home_roster_grid, text="Player:", font=("Arial", 12))
+    home_ps_l_label.grid(column=0, row=11)
+
+    home_ps_l_label = tk.Entry(home_roster_grid, textvariable=home_ps_l_var)
+    home_ps_l_label.grid(column=1, row=11)
+
+    home_ps_m_label = tk.Label(home_roster_grid, text="Player:", font=("Arial", 12))
+    home_ps_m_label.grid(column=0, row=12)
+
+    home_ps_m_label = tk.Entry(home_roster_grid, textvariable=home_ps_m_var)
+    home_ps_m_label.grid(column=1, row=12)
+
+    home_ps_n_label = tk.Label(home_roster_grid, text="Player:", font=("Arial", 12))
+    home_ps_n_label.grid(column=0, row=13)
+
+    home_ps_n_label = tk.Entry(home_roster_grid, textvariable=home_ps_n_var)
+    home_ps_n_label.grid(column=1, row=13)
+
+    home_ps_o_label = tk.Label(home_roster_grid, text="Player:", font=("Arial", 12))
+    home_ps_o_label.grid(column=0, row=14)
+
+    home_ps_o_label = tk.Entry(home_roster_grid, textvariable=home_ps_o_var)
+    home_ps_o_label.grid(column=1, row=14)
+
+    home_ps_p_label = tk.Label(home_roster_grid, text="Player:", font=("Arial", 12))
+    home_ps_p_label.grid(column=0, row=15)
+
+    home_ps_p_label = tk.Entry(home_roster_grid, textvariable=home_ps_p_var)
+    home_ps_p_label.grid(column=1, row=15)
+
+    home_ps_q_label = tk.Label(home_roster_grid, text="Player:", font=("Arial", 12))
+    home_ps_q_label.grid(column=0, row=16)
+
+    home_ps_q_label = tk.Entry(home_roster_grid, textvariable=home_ps_q_var)
+    home_ps_q_label.grid(column=1, row=16)
+
+    home_ps_r_label = tk.Label(home_roster_grid, text="Player:", font=("Arial", 12))
+    home_ps_r_label.grid(column=0, row=17)
+
+    home_ps_r_label = tk.Entry(home_roster_grid, textvariable=home_ps_r_var)
+    home_ps_r_label.grid(column=1, row=17)
+
+    home_ps_s_label = tk.Label(home_roster_grid, text="Player:", font=("Arial", 12))
+    home_ps_s_label.grid(column=0, row=18)
+
+    home_ps_s_label = tk.Entry(home_roster_grid, textvariable=home_ps_s_var)
+    home_ps_s_label.grid(column=1, row=18)
+
+    home_ps_t_label = tk.Label(home_roster_grid, text="Player:", font=("Arial", 12))
+    home_ps_t_label.grid(column=0, row=19)
+
+    home_ps_t_label = tk.Entry(home_roster_grid, textvariable=home_ps_t_var)
+    home_ps_t_label.grid(column=1, row=19)
+
+    home_ps_u_label = tk.Label(home_roster_grid, text="Player:", font=("Arial", 12))
+    home_ps_u_label.grid(column=0, row=20)
+
+    home_ps_u_label = tk.Entry(home_roster_grid, textvariable=home_ps_u_var)
+    home_ps_u_label.grid(column=1, row=20)
+
+    home_ps_v_label = tk.Label(home_roster_grid, text="Player:", font=("Arial", 12))
+    home_ps_v_label.grid(column=0, row=21)
+
+    home_ps_v_label = tk.Entry(home_roster_grid, textvariable=home_ps_v_var)
+    home_ps_v_label.grid(column=1, row=21)
+
+    home_ps_w_label = tk.Label(home_roster_grid, text="Player:", font=("Arial", 12))
+    home_ps_w_label.grid(column=0, row=22)
+
+    home_ps_w_label = tk.Entry(home_roster_grid, textvariable=home_ps_w_var)
+    home_ps_w_label.grid(column=1, row=22)
+
+    home_ps_x_label = tk.Label(home_roster_grid, text="Player:", font=("Arial", 12))
+    home_ps_x_label.grid(column=0, row=23)
+
+    home_ps_x_label = tk.Entry(home_roster_grid, textvariable=home_ps_x_var)
+    home_ps_x_label.grid(column=1, row=23)
+
+    home_ps_y_label = tk.Label(home_roster_grid, text="Player:", font=("Arial", 12))
+    home_ps_y_label.grid(column=0, row=24)
+
+    home_ps_y_label = tk.Entry(home_roster_grid, textvariable=home_ps_y_var)
+    home_ps_y_label.grid(column=1, row=24)
+
+    home_ps_z_label = tk.Label(home_roster_grid, text="Player:", font=("Arial", 12))
+    home_ps_z_label.grid(column=0, row=25)
+
+    home_ps_z_label = tk.Entry(home_roster_grid, textvariable=home_ps_z_var)
+    home_ps_z_label.grid(column=1, row=25)
+
     home_roster_grid.pack()
     home_roster_frame.pack(side=tk.TOP)
 
+    basic_setup.state('zoomed')
     basic_setup.mainloop()
 
 
