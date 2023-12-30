@@ -2,6 +2,7 @@ import tkinter as tk
 from tkinter import filedialog
 # from PIL import Image, ImageTk
 import re
+import json
 
 
 def new_game():
@@ -33,6 +34,29 @@ def new_game():
         away_mascot_path = filedialog.askopenfilename(title="Open Team Image", filetypes=[("PNG Images", "*.png")])
         away_path_var.set(away_mascot_path)
 
+    def commit_setup_data():
+        basic_data = {
+            "Date": date_var.get(),
+            "Time": time_var.get(),
+            "Location": location_var.get(),
+            "Up Referee": up_referee_var.get(),
+            "Down Referee": down_referee_var.get(),
+            "Scorekeeper": scorekeeper_var.get(),
+            "Home Team Name": home_name_var.get(),
+            "Home Team Mascot": home_mascot_var.get(),
+            "Home Team Code": home_code_var.get(),
+            "Home Team Logo Path": home_path_var.get(),
+            "Away Team Name": away_name_var.get(),
+            "Away Team Mascot": away_mascot_var.get(),
+            "Away Team Code": away_code_var.get(),
+            "Away Team Logo Path": away_path_var.get(),
+        }
+
+        json_writer = json.dumps(basic_data)
+        with open(f"""{basic_data['Date'].replace('/', '-')}_{basic_data
+        ['Away Team Code']}_at_{basic_data['Home Team Code']}.json""", 'w') as file:
+            file.write(json_writer)
+
     def validate_setup():
         errors = []
         if len(date_var.get()) == 0:
@@ -53,27 +77,36 @@ def new_game():
             errors.append("Invalid characters in Up Referee")
         if len(down_referee_var.get()) > 0 and not re.match(r'^[A-Za-z\'\s\-]+$', down_referee_var.get()):
             errors.append("Invalid characters in Down Referee")
+        elif len(down_referee_var.get()) == 0:
+            down_referee_var.set("N/A")
         if len(scorekeeper_var.get()) == 0:
             errors.append("Scorekeeper is empty")
         elif not re.match(r'^[A-Za-z\'\s\-]+$', scorekeeper_var.get()):
             errors.append("Invalid characters in Scorekeeper")
         if len(home_name_var.get()) == 0:
             errors.append("Home Team Name is empty")
+        if len(home_mascot_var.get()) == 0:
+            home_mascot_var.set("N/A")
         if len(home_code_var.get()) == 0:
             errors.append("Home Code is empty")
         elif not re.match(r'^[A-Z]{3}$', home_code_var.get()):
             errors.append("Home Code format is invalid: "+home_code_var.get())
+        if len(home_path_var.get()) == 0:
+            home_path_var.set("N/A")
         if len(away_name_var.get()) == 0:
             errors.append("Away Team Name is empty")
+        if len(away_mascot_var.get()) == 0:
+            away_mascot_var.set("N/A")
         if len(away_code_var.get()) == 0:
             errors.append("Away Code is empty")
         elif not re.match(r'^[A-Z]{3}$', away_code_var.get()):
             errors.append("Away Code format is invalid: "+away_code_var.get())
-        if not errors:
-            print("Positive validation holder")
+        if len(away_path_var.get()) == 0:
+            away_path_var.set("N/A")
+        if errors:
+            tk.messagebox.showerror("Validation Error", "\n".join(errors))
         else:
-            print("Negative validation holder")
-            print(errors)
+            commit_setup_data()
 
     gen_info_label = tk.Label(new_game_setup, text="General Information", font=("Arial", 20))
     gen_info_label.pack(padx=5, pady=15)
