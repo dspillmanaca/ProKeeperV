@@ -132,8 +132,66 @@ def new_game_():
         home_path_var.set(home_mascot_path)
 
     def open_away_mascot():
-        away_mascot_path = filedialog.askopenfilename(title="Open Team Image", filetypes=[("PNG Images", "*.png")])
-        away_path_var.set(away_mascot_path)
+#         away_mascot_path = filedialog.askopenfilename(title="Open Team Image", filetypes=[("PNG Images", "*.png")])
+#         away_path_var.set(away_mascot_path)
+#
+#     def save_home_roster():
+        home_roster = {
+            "Co": home_coach_var.get(),
+            "ACo": home_acoach_var.get(),
+            "Ca": home_cap_var.get(),
+            "CaNum": home_cap_num_var.get(),
+            "ACa": home_acap_var.get(),
+            "ACaNum": home_acap_num_var.get(),
+            "LE": home_lib_e_var.get(),
+            "LENum": home_lib_e_num_var.get(),
+            "LF": home_lib_f_var.get(),
+            "LFNum": home_lib_f_num_var.get(),
+            "PSG": home_ps_g_var.get(),
+            "PSGNum": home_ps_g_num_var.get(),
+            "PSH": home_ps_h_var.get(),
+            "PSHNum": home_ps_h_num_var.get(),
+            "PSI": home_ps_i_var.get(),
+            "PSINum": home_ps_i_num_var.get(),
+            "PSJ": home_ps_j_var.get(),
+            "PSJNum": home_ps_j_num_var.get(),
+            "PSK": home_ps_k_var.get(),
+            "PSKNum": home_ps_k_num_var.get(),
+            "PSL": home_ps_l_var.get(),
+            "PSLNum": home_ps_l_num_var.get(),
+            "PSM": home_ps_m_var.get(),
+            "PSMNum": home_ps_m_num_var.get(),
+            "PSN": home_ps_n_var.get(),
+            "PSNNum": home_ps_n_num_var.get(),
+            "PSO": home_ps_o_var.get(),
+            "PSONum": home_ps_o_num_var.get(),
+            "PSP": home_ps_p_var.get(),
+            "PSPNum": home_ps_p_num_var.get(),
+            "PSQ": home_ps_q_var.get(),
+            "PSQNum": home_ps_q_num_var.get(),
+            "PSR": home_ps_r_var.get(),
+            "PSRNum": home_ps_r_num_var.get(),
+            "PSS": home_ps_s_var.get(),
+            "PSSNum": home_ps_s_num_var.get(),
+            "PST": home_ps_t_var.get(),
+            "PSTNum": home_ps_t_num_var.get(),
+            "PSU": home_ps_u_var.get(),
+            "PSUNum": home_ps_u_num_var.get(),
+            "PSV": home_ps_v_var.get(),
+            "PSVNum": home_ps_v_num_var.get(),
+            "PSW": home_ps_w_var.get(),
+            "PSWNum": home_ps_w_num_var.get(),
+            "PSX": home_ps_x_var.get(),
+            "PSXNum": home_ps_x_num_var.get(),
+            "PSY": home_ps_y_var.get(),
+            "PSYNum": home_ps_y_num_var.get(),
+            "PSZ": home_ps_z_var.get(),
+            "PSZNum": home_ps_z_num_var.get(),
+        }
+        home_roster_writer = json.dumps(home_roster)
+        with open(filedialog.asksaveasfilename(initialfile=f"{home_name_var.get()}.rostr", title="Save Roster", filetypes=[("ProKeeper Volleyball Team Roster", "*.rostr")]), 'w') as file:
+            file.write(home_roster_writer)
+
 
     def commit_setup_data():
         basic_data = {
@@ -154,8 +212,9 @@ def new_game_():
         }
 
         json_writer = json.dumps(basic_data)
-        with open(f"""{basic_data['Date'].replace('/', '-')}_{basic_data
-        ['Away Team Code']}_at_{basic_data['Home Team Code']}.json""", 'w') as file:
+        with open(filedialog.asksaveasfilename(initialfile=f"""{basic_data['Date'].replace('/', '-')}
+        _{basic_data['Away Team Code']}_at_{basic_data['Home Team Code']}
+        .json""", title="Save Game", filetypes=[("ProKeeper Volleyball Game", "*.pkvgame")]), 'w') as file:
             file.write(json_writer)
 
     def validate_setup():
