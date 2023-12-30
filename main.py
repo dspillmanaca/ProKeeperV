@@ -132,10 +132,10 @@ def new_game_():
         home_path_var.set(home_mascot_path)
 
     def open_away_mascot():
-#         away_mascot_path = filedialog.askopenfilename(title="Open Team Image", filetypes=[("PNG Images", "*.png")])
-#         away_path_var.set(away_mascot_path)
-#
-#     def save_home_roster():
+         away_mascot_path = filedialog.askopenfilename(title="Open Team Image", filetypes=[("PNG Images", "*.png")])
+         away_path_var.set(away_mascot_path)
+
+    def save_home_roster():
         home_roster = {
             "Co": home_coach_var.get(),
             "ACo": home_acoach_var.get(),
@@ -189,7 +189,10 @@ def new_game_():
             "PSZNum": home_ps_z_num_var.get(),
         }
         home_roster_writer = json.dumps(home_roster)
-        with open(filedialog.asksaveasfilename(initialfile=f"{home_name_var.get()}.rostr", title="Save Roster", filetypes=[("ProKeeper Volleyball Team Roster", "*.rostr")]), 'w') as file:
+        with open(filedialog.asksaveasfilename(initialfile=f"{home_name_var.get()}",
+                                               filetypes=[('ProKeeper Volleyball Team Roster', '*.rostr')],
+                                               defaultextension='*.rostr',
+                                               title="Save Roster"), 'w') as file:
             file.write(home_roster_writer)
 
 
@@ -213,8 +216,10 @@ def new_game_():
 
         json_writer = json.dumps(basic_data)
         with open(filedialog.asksaveasfilename(initialfile=f"""{basic_data['Date'].replace('/', '-')}
-        _{basic_data['Away Team Code']}_at_{basic_data['Home Team Code']}
-        .json""", title="Save Game", filetypes=[("ProKeeper Volleyball Game", "*.pkvgame")]), 'w') as file:
+        _{basic_data['Away Team Code']}_at_{basic_data['Home Team Code']}.json""",
+                                               title="Save Game",
+                                               filetypes=[('ProKeeper Volleyball Game', '*.pkvgame')],
+                                               defaultextension='*.pkvgame',), 'w') as file:
             file.write(json_writer)
 
     def validate_setup():
@@ -343,6 +348,12 @@ def new_game_():
 
     home_logo = tk.Button(home_info_grid, text="Upload", font=("Arial", 10), command=open_home_mascot)
     home_logo.grid(row=3, column=1, sticky=tk.W+tk.E, padx=10)
+
+    home_load_roster = tk.Button(home_info_grid, text="Load Roster", font=("Arial", 10), command=load_home_roster)
+    home_load_roster.grid(row=4, column=0, sticky=tk.W+tk.E)
+
+    home_save_roster = tk.Button(home_info_grid, text="Save Roster", font=("Arial", 10), command=save_home_roster)
+    home_save_roster.grid(row=4, column=1, sticky=tk.W+tk.E)
 
     home_info_grid.pack(fill='x')
 
