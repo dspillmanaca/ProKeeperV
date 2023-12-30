@@ -5,11 +5,12 @@ import re
 import json
 
 
-def new_game():
+def new_game_():
     startup.destroy()
-    new_game_setup = tk.Tk()
-    new_game_setup.title("New Game Setup")
-    new_game_setup.geometry("325x590")
+    basic_setup = tk.Tk()
+    basic_setup.title("New Game Setup")
+    basic_setup.geometry("975x590")
+    new_game_setup = tk.Frame()
 
     date_var = tk.StringVar()
     time_var = tk.StringVar()
@@ -25,6 +26,58 @@ def new_game():
     away_mascot_var = tk.StringVar()
     away_code_var = tk.StringVar()
     away_path_var = tk.StringVar()
+    home_coach_var = tk.StringVar()
+    home_acoach_var = tk.StringVar()
+    home_cap_var = tk.StringVar()
+    home_acap_var = tk.StringVar()
+    home_lib_e_var = tk.StringVar()
+    home_lib_f_var = tk.StringVar()
+    home_ps_g_var = tk.StringVar()
+    home_ps_h_var = tk.StringVar()
+    home_ps_i_var = tk.StringVar()
+    home_ps_j_var = tk.StringVar()
+    home_ps_k_var = tk.StringVar()
+    home_ps_l_var = tk.StringVar()
+    home_ps_m_var = tk.StringVar()
+    home_ps_n_var = tk.StringVar()
+    home_ps_o_var = tk.StringVar()
+    home_ps_p_var = tk.StringVar()
+    home_ps_q_var = tk.StringVar()
+    home_ps_r_var = tk.StringVar()
+    home_ps_s_var = tk.StringVar()
+    home_ps_t_var = tk.StringVar()
+    home_ps_u_var = tk.StringVar()
+    home_ps_v_var = tk.StringVar()
+    home_ps_w_var = tk.StringVar()
+    home_ps_x_var = tk.StringVar()
+    home_ps_y_var = tk.StringVar()
+    home_ps_z_var = tk.StringVar()
+    away_coach_var = tk.StringVar()
+    away_acoach_var = tk.StringVar()
+    away_cap_var = tk.StringVar()
+    away_acap_var = tk.StringVar()
+    away_lib_e_var = tk.StringVar()
+    away_lib_f_var = tk.StringVar()
+    away_ps_g_var = tk.StringVar()
+    away_ps_h_var = tk.StringVar()
+    away_ps_i_var = tk.StringVar()
+    away_ps_j_var = tk.StringVar()
+    away_ps_k_var = tk.StringVar()
+    away_ps_l_var = tk.StringVar()
+    away_ps_m_var = tk.StringVar()
+    away_ps_n_var = tk.StringVar()
+    away_ps_o_var = tk.StringVar()
+    away_ps_p_var = tk.StringVar()
+    away_ps_q_var = tk.StringVar()
+    away_ps_r_var = tk.StringVar()
+    away_ps_s_var = tk.StringVar()
+    away_ps_t_var = tk.StringVar()
+    away_ps_u_var = tk.StringVar()
+    away_ps_v_var = tk.StringVar()
+    away_ps_w_var = tk.StringVar()
+    away_ps_x_var = tk.StringVar()
+    away_ps_y_var = tk.StringVar()
+    away_ps_z_var = tk.StringVar()
 
     def open_home_mascot():
         home_mascot_path = filedialog.askopenfilename(title="Open Team Image", filetypes=[("PNG Images", "*.png")])
@@ -77,35 +130,35 @@ def new_game():
             errors.append("Invalid characters in Up Referee")
         if len(down_referee_var.get()) > 0 and not re.match(r'^[A-Za-z\'\s\-]+$', down_referee_var.get()):
             errors.append("Invalid characters in Down Referee")
-        elif len(down_referee_var.get()) == 0:
-            down_referee_var.set("N/A")
         if len(scorekeeper_var.get()) == 0:
             errors.append("Scorekeeper is empty")
         elif not re.match(r'^[A-Za-z\'\s\-]+$', scorekeeper_var.get()):
             errors.append("Invalid characters in Scorekeeper")
         if len(home_name_var.get()) == 0:
             errors.append("Home Team Name is empty")
-        if len(home_mascot_var.get()) == 0:
-            home_mascot_var.set("N/A")
         if len(home_code_var.get()) == 0:
             errors.append("Home Code is empty")
         elif not re.match(r'^[A-Z]{3}$', home_code_var.get()):
             errors.append("Home Code format is invalid: "+home_code_var.get())
-        if len(home_path_var.get()) == 0:
-            home_path_var.set("N/A")
         if len(away_name_var.get()) == 0:
             errors.append("Away Team Name is empty")
-        if len(away_mascot_var.get()) == 0:
-            away_mascot_var.set("N/A")
         if len(away_code_var.get()) == 0:
             errors.append("Away Code is empty")
         elif not re.match(r'^[A-Z]{3}$', away_code_var.get()):
             errors.append("Away Code format is invalid: "+away_code_var.get())
-        if len(away_path_var.get()) == 0:
-            away_path_var.set("N/A")
         if errors:
             tk.messagebox.showerror("Validation Error", "\n".join(errors))
         else:
+            if len(down_referee_var.get()) == 0:
+                down_referee_var.set("N/A")
+            if len(home_mascot_var.get()) == 0:
+                home_mascot_var.set("N/A")
+            if len(home_path_var.get()) == 0:
+                home_path_var.set("N/A")
+            if len(away_mascot_var.get()) == 0:
+                away_mascot_var.set("N/A")
+            if len(away_path_var.get()) == 0:
+                away_path_var.set("N/A")
             commit_setup_data()
 
     gen_info_label = tk.Label(new_game_setup, text="General Information", font=("Arial", 20))
@@ -222,6 +275,58 @@ def new_game():
     setup_next_button = tk.Button(new_game_setup, font=("Arial", 10), text="Next", command=validate_setup)
     setup_next_button.pack(fill='x', padx=10, pady=5)
 
+    new_game_setup.pack(side=tk.LEFT)
+
+    home_roster_frame = tk.Frame(basic_setup)
+
+    home_roster_label = tk.Label(home_roster_frame, text="Home Team Roster", font=("Arial", 20))
+    home_roster_label.pack(padx=5, pady=10)
+
+    home_roster_grid = tk.Frame(home_roster_frame)
+    home_roster_grid.columnconfigure(0, weight=1)
+    home_roster_grid.columnconfigure(1, weight=1)
+
+    home_coach_label = tk.Label(home_roster_grid, text="Coach:", font=("Arial", 12))
+    home_coach_label.grid(column=0, row=0)
+
+    home_coach_entry = tk.Entry(home_roster_grid, textvariable=home_coach_var)
+    home_coach_entry.grid(column=1, row=0)
+
+    home_acoach_label = tk.Label(home_roster_grid, text="Ast. Coach:", font=("Arial", 12))
+    home_acoach_label.grid(column=0, row=1)
+
+    home_acoach_entry = tk.Entry(home_roster_grid, textvariable=home_acoach_var)
+    home_acoach_entry.grid(column=1, row=1)
+
+    home_cap_label = tk.Label(home_roster_grid, text="Captain:", font=("Arial", 12))
+    home_cap_label.grid(column=0, row=2)
+
+    home_cap_entry = tk.Entry(home_roster_grid, textvariable=home_cap_var)
+    home_cap_entry.grid(column=1, row=2)
+
+    home_acap_label = tk.Label(home_roster_grid, text="Ast. Captain:", font=("Arial", 12))
+    home_acap_label.grid(column=0, row=3)
+
+    home_acap_entry = tk.Entry(home_roster_grid, textvariable=home_acap_var)
+    home_acap_entry.grid(column=1, row=3)
+
+    home_lib_e_label = tk.Label(home_roster_grid, text="Libero 1:", font=("Arial", 12))
+    home_lib_e_label.grid(column=0, row=4)
+
+    home_lib_e_entry = tk.Entry(home_roster_grid, textvariable=home_lib_e_var)
+    home_lib_e_entry.grid(column=1, row=4)
+
+    home_lib_f_label = tk.Label(home_roster_grid, text="Libero 2:", font=("Arial", 12))
+    home_lib_f_label.grid(column=0, row=5)
+
+    home_lib_f_entry = tk.Entry(home_roster_grid, textvariable=home_lib_f_var)
+    home_lib_f_entry.grid(column=1, row=5)
+
+    home_roster_grid.pack()
+    home_roster_frame.pack(side=tk.TOP)
+
+    basic_setup.mainloop()
+
 
 def load_game():
     print("Holder")
@@ -236,7 +341,7 @@ def startup_window():
     startup_label = tk.Label(text="ProKeeper for Volleyball", font=("Arial", 18))
     startup_label.pack(padx=5, pady=25)
 
-    new_game_button = tk.Button(startup, text="New Game", font=("Arial", 14), command=new_game)
+    new_game_button = tk.Button(startup, text="New Game", font=("Arial", 14), command=new_game_)
     new_game_button.pack(padx=5, pady=10)
 
     load_game_button = tk.Button(startup, text="Load Game", font=("Arial", 14), command=load_game)
