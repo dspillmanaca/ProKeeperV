@@ -29,55 +29,103 @@ def new_game_():
     home_coach_var = tk.StringVar()
     home_acoach_var = tk.StringVar()
     home_cap_var = tk.StringVar()
+    home_cap_num_var = tk.StringVar()
     home_acap_var = tk.StringVar()
+    home_acap_num_var = tk.StringVar()
     home_lib_e_var = tk.StringVar()
+    home_lib_e_num_var = tk.StringVar()
     home_lib_f_var = tk.StringVar()
+    home_lib_f_num_var = tk.StringVar()
     home_ps_g_var = tk.StringVar()
+    home_ps_g_num_var = tk.StringVar()
     home_ps_h_var = tk.StringVar()
+    home_ps_h_num_var = tk.StringVar()
     home_ps_i_var = tk.StringVar()
+    home_ps_i_num_var = tk.StringVar()
     home_ps_j_var = tk.StringVar()
+    home_ps_j_num_var = tk.StringVar()
     home_ps_k_var = tk.StringVar()
+    home_ps_k_num_var = tk.StringVar()
     home_ps_l_var = tk.StringVar()
+    home_ps_l_num_var = tk.StringVar()
     home_ps_m_var = tk.StringVar()
+    home_ps_m_num_var = tk.StringVar()
     home_ps_n_var = tk.StringVar()
+    home_ps_n_num_var = tk.StringVar()
     home_ps_o_var = tk.StringVar()
+    home_ps_o_num_var = tk.StringVar()
     home_ps_p_var = tk.StringVar()
+    home_ps_p_num_var = tk.StringVar()
     home_ps_q_var = tk.StringVar()
+    home_ps_q_num_var = tk.StringVar()
     home_ps_r_var = tk.StringVar()
+    home_ps_r_num_var = tk.StringVar()
     home_ps_s_var = tk.StringVar()
+    home_ps_s_num_var = tk.StringVar()
     home_ps_t_var = tk.StringVar()
+    home_ps_t_num_var = tk.StringVar()
     home_ps_u_var = tk.StringVar()
+    home_ps_u_num_var = tk.StringVar()
     home_ps_v_var = tk.StringVar()
+    home_ps_v_num_var = tk.StringVar()
     home_ps_w_var = tk.StringVar()
+    home_ps_w_num_var = tk.StringVar()
     home_ps_x_var = tk.StringVar()
+    home_ps_x_num_var = tk.StringVar()
     home_ps_y_var = tk.StringVar()
+    home_ps_y_num_var = tk.StringVar()
     home_ps_z_var = tk.StringVar()
+    home_ps_z_num_var = tk.StringVar()
     away_coach_var = tk.StringVar()
     away_acoach_var = tk.StringVar()
     away_cap_var = tk.StringVar()
+    away_cap_num_var = tk.StringVar()
     away_acap_var = tk.StringVar()
+    away_acap_num_var = tk.StringVar()
     away_lib_e_var = tk.StringVar()
+    away_lib_e_num_var = tk.StringVar()
     away_lib_f_var = tk.StringVar()
+    away_lib_f_num_var = tk.StringVar()
     away_ps_g_var = tk.StringVar()
+    away_ps_g_num_var = tk.StringVar()
     away_ps_h_var = tk.StringVar()
+    away_ps_h_num_var = tk.StringVar()
     away_ps_i_var = tk.StringVar()
+    away_ps_i_num_var = tk.StringVar()
     away_ps_j_var = tk.StringVar()
+    away_ps_j_num_var = tk.StringVar()
     away_ps_k_var = tk.StringVar()
+    away_ps_k_num_var = tk.StringVar()
     away_ps_l_var = tk.StringVar()
+    away_ps_l_num_var = tk.StringVar()
     away_ps_m_var = tk.StringVar()
+    away_ps_m_num_var = tk.StringVar()
     away_ps_n_var = tk.StringVar()
+    away_ps_n_num_var = tk.StringVar()
     away_ps_o_var = tk.StringVar()
+    away_ps_o_num_var = tk.StringVar()
     away_ps_p_var = tk.StringVar()
+    away_ps_p_num_var = tk.StringVar()
     away_ps_q_var = tk.StringVar()
+    away_ps_q_num_var = tk.StringVar()
     away_ps_r_var = tk.StringVar()
+    away_ps_r_num_var = tk.StringVar()
     away_ps_s_var = tk.StringVar()
+    away_ps_s_num_var = tk.StringVar()
     away_ps_t_var = tk.StringVar()
+    away_ps_t_num_var = tk.StringVar()
     away_ps_u_var = tk.StringVar()
+    away_ps_u_num_var = tk.StringVar()
     away_ps_v_var = tk.StringVar()
+    away_ps_v_num_var = tk.StringVar()
     away_ps_w_var = tk.StringVar()
+    away_ps_w_num_var = tk.StringVar()
     away_ps_x_var = tk.StringVar()
+    away_ps_x_num_var = tk.StringVar()
     away_ps_y_var = tk.StringVar()
+    away_ps_y_num_var = tk.StringVar()
     away_ps_z_var = tk.StringVar()
+    away_ps_z_num_var = tk.StringVar()
 
     def open_home_mascot():
         home_mascot_path = filedialog.askopenfilename(title="Open Team Image", filetypes=[("PNG Images", "*.png")])
@@ -275,7 +323,7 @@ def new_game_():
     setup_next_button = tk.Button(new_game_setup, font=("Arial", 10), text="Next", command=validate_setup)
     setup_next_button.pack(fill='x', padx=10, pady=5)
 
-    new_game_setup.pack(side=tk.LEFT)
+    new_game_setup.pack(side=tk.RIGHT, padx=30)
 
     home_roster_frame = tk.Frame(basic_setup)
 
@@ -283,8 +331,9 @@ def new_game_():
     home_roster_label.pack(padx=5, pady=10)
 
     home_roster_grid = tk.Frame(home_roster_frame)
-    home_roster_grid.columnconfigure(0, weight=1)
-    home_roster_grid.columnconfigure(1, weight=1)
+    home_roster_grid.columnconfigure(0, weight=2)
+    home_roster_grid.columnconfigure(1, weight=2)
+    home_roster_grid.columnconfigure(2, weight=1)
 
     home_coach_label = tk.Label(home_roster_grid, text="Coach:", font=("Arial", 12))
     home_coach_label.grid(column=0, row=0)
@@ -304,11 +353,17 @@ def new_game_():
     home_cap_entry = tk.Entry(home_roster_grid, textvariable=home_cap_var)
     home_cap_entry.grid(column=1, row=2)
 
+    home_cap_num_entry = tk.Entry(home_roster_grid, textvariable=home_cap_num_var, width=3)
+    home_cap_num_entry.grid(column=2, row=2)
+
     home_acap_label = tk.Label(home_roster_grid, text="Ast. Captain:", font=("Arial", 12))
     home_acap_label.grid(column=0, row=3)
 
     home_acap_entry = tk.Entry(home_roster_grid, textvariable=home_acap_var)
     home_acap_entry.grid(column=1, row=3)
+
+    home_acap_num_entry = tk.Entry(home_roster_grid, textvariable=home_acap_num_var, width=3)
+    home_acap_num_entry.grid(column=2, row=3)
 
     home_lib_e_label = tk.Label(home_roster_grid, text="Libero:", font=("Arial", 12))
     home_lib_e_label.grid(column=0, row=4)
@@ -316,11 +371,17 @@ def new_game_():
     home_lib_e_entry = tk.Entry(home_roster_grid, textvariable=home_lib_e_var)
     home_lib_e_entry.grid(column=1, row=4)
 
+    home_lib_e_num_entry = tk.Entry(home_roster_grid, textvariable=home_lib_e_num_var, width=3)
+    home_lib_e_num_entry.grid(column=2, row=4)
+
     home_lib_f_label = tk.Label(home_roster_grid, text="Libero:", font=("Arial", 12))
     home_lib_f_label.grid(column=0, row=5)
 
     home_lib_f_entry = tk.Entry(home_roster_grid, textvariable=home_lib_f_var)
     home_lib_f_entry.grid(column=1, row=5)
+
+    home_lib_f_num_entry = tk.Entry(home_roster_grid, textvariable=home_lib_f_num_var, width=3)
+    home_lib_f_num_entry.grid(column=2, row=5)
 
     home_ps_g_label = tk.Label(home_roster_grid, text="Player:", font=("Arial", 12))
     home_ps_g_label.grid(column=0, row=6)
@@ -328,11 +389,17 @@ def new_game_():
     home_ps_g_label = tk.Entry(home_roster_grid, textvariable=home_ps_g_var)
     home_ps_g_label.grid(column=1, row=6)
 
+    home_ps_g_num_entry = tk.Entry(home_roster_grid, textvariable=home_ps_g_num_var, width=3)
+    home_ps_g_num_entry.grid(column=2, row=6)
+
     home_ps_h_label = tk.Label(home_roster_grid, text="Player:", font=("Arial", 12))
     home_ps_h_label.grid(column=0, row=7)
 
     home_ps_h_label = tk.Entry(home_roster_grid, textvariable=home_ps_h_var)
     home_ps_h_label.grid(column=1, row=7)
+
+    home_ps_h_num_entry = tk.Entry(home_roster_grid, textvariable=home_ps_h_num_var, width=3)
+    home_ps_h_num_entry.grid(column=2, row=7)
 
     home_ps_i_label = tk.Label(home_roster_grid, text="Player:", font=("Arial", 12))
     home_ps_i_label.grid(column=0, row=8)
@@ -340,11 +407,17 @@ def new_game_():
     home_ps_i_label = tk.Entry(home_roster_grid, textvariable=home_ps_i_var)
     home_ps_i_label.grid(column=1, row=8)
 
+    home_ps_i_num_entry = tk.Entry(home_roster_grid, textvariable=home_ps_i_num_var, width=3)
+    home_ps_i_num_entry.grid(column=2, row=8)
+
     home_ps_j_label = tk.Label(home_roster_grid, text="Player:", font=("Arial", 12))
     home_ps_j_label.grid(column=0, row=9)
 
     home_ps_j_label = tk.Entry(home_roster_grid, textvariable=home_ps_j_var)
     home_ps_j_label.grid(column=1, row=9)
+
+    home_ps_j_num_entry = tk.Entry(home_roster_grid, textvariable=home_ps_j_num_var, width=3)
+    home_ps_j_num_entry.grid(column=2, row=9)
 
     home_ps_k_label = tk.Label(home_roster_grid, text="Player:", font=("Arial", 12))
     home_ps_k_label.grid(column=0, row=10)
@@ -352,11 +425,17 @@ def new_game_():
     home_ps_k_label = tk.Entry(home_roster_grid, textvariable=home_ps_k_var)
     home_ps_k_label.grid(column=1, row=10)
 
+    home_ps_k_num_entry = tk.Entry(home_roster_grid, textvariable=home_ps_k_num_var, width=3)
+    home_ps_k_num_entry.grid(column=2, row=10)
+
     home_ps_l_label = tk.Label(home_roster_grid, text="Player:", font=("Arial", 12))
     home_ps_l_label.grid(column=0, row=11)
 
     home_ps_l_label = tk.Entry(home_roster_grid, textvariable=home_ps_l_var)
     home_ps_l_label.grid(column=1, row=11)
+
+    home_ps_l_num_entry = tk.Entry(home_roster_grid, textvariable=home_ps_l_num_var, width=3)
+    home_ps_l_num_entry.grid(column=2, row=11)
 
     home_ps_m_label = tk.Label(home_roster_grid, text="Player:", font=("Arial", 12))
     home_ps_m_label.grid(column=0, row=12)
@@ -364,11 +443,17 @@ def new_game_():
     home_ps_m_label = tk.Entry(home_roster_grid, textvariable=home_ps_m_var)
     home_ps_m_label.grid(column=1, row=12)
 
+    home_ps_m_num_entry = tk.Entry(home_roster_grid, textvariable=home_ps_m_num_var, width=3)
+    home_ps_m_num_entry.grid(column=2, row=12)
+
     home_ps_n_label = tk.Label(home_roster_grid, text="Player:", font=("Arial", 12))
     home_ps_n_label.grid(column=0, row=13)
 
     home_ps_n_label = tk.Entry(home_roster_grid, textvariable=home_ps_n_var)
     home_ps_n_label.grid(column=1, row=13)
+
+    home_ps_n_num_entry = tk.Entry(home_roster_grid, textvariable=home_ps_n_num_var, width=3)
+    home_ps_n_num_entry.grid(column=2, row=13)
 
     home_ps_o_label = tk.Label(home_roster_grid, text="Player:", font=("Arial", 12))
     home_ps_o_label.grid(column=0, row=14)
@@ -376,11 +461,17 @@ def new_game_():
     home_ps_o_label = tk.Entry(home_roster_grid, textvariable=home_ps_o_var)
     home_ps_o_label.grid(column=1, row=14)
 
+    home_ps_o_num_entry = tk.Entry(home_roster_grid, textvariable=home_ps_o_num_var, width=3)
+    home_ps_o_num_entry.grid(column=2, row=14)
+
     home_ps_p_label = tk.Label(home_roster_grid, text="Player:", font=("Arial", 12))
     home_ps_p_label.grid(column=0, row=15)
 
     home_ps_p_label = tk.Entry(home_roster_grid, textvariable=home_ps_p_var)
     home_ps_p_label.grid(column=1, row=15)
+
+    home_ps_p_num_entry = tk.Entry(home_roster_grid, textvariable=home_ps_p_num_var, width=3)
+    home_ps_p_num_entry.grid(column=2, row=15)
 
     home_ps_q_label = tk.Label(home_roster_grid, text="Player:", font=("Arial", 12))
     home_ps_q_label.grid(column=0, row=16)
@@ -388,11 +479,17 @@ def new_game_():
     home_ps_q_label = tk.Entry(home_roster_grid, textvariable=home_ps_q_var)
     home_ps_q_label.grid(column=1, row=16)
 
+    home_ps_q_num_entry = tk.Entry(home_roster_grid, textvariable=home_ps_q_num_var, width=3)
+    home_ps_q_num_entry.grid(column=2, row=16)
+
     home_ps_r_label = tk.Label(home_roster_grid, text="Player:", font=("Arial", 12))
     home_ps_r_label.grid(column=0, row=17)
 
     home_ps_r_label = tk.Entry(home_roster_grid, textvariable=home_ps_r_var)
     home_ps_r_label.grid(column=1, row=17)
+
+    home_ps_r_num_entry = tk.Entry(home_roster_grid, textvariable=home_ps_r_num_var, width=3)
+    home_ps_r_num_entry.grid(column=2, row=17)
 
     home_ps_s_label = tk.Label(home_roster_grid, text="Player:", font=("Arial", 12))
     home_ps_s_label.grid(column=0, row=18)
@@ -400,11 +497,17 @@ def new_game_():
     home_ps_s_label = tk.Entry(home_roster_grid, textvariable=home_ps_s_var)
     home_ps_s_label.grid(column=1, row=18)
 
+    home_ps_s_num_entry = tk.Entry(home_roster_grid, textvariable=home_ps_s_num_var, width=3)
+    home_ps_s_num_entry.grid(column=2, row=18)
+
     home_ps_t_label = tk.Label(home_roster_grid, text="Player:", font=("Arial", 12))
     home_ps_t_label.grid(column=0, row=19)
 
     home_ps_t_label = tk.Entry(home_roster_grid, textvariable=home_ps_t_var)
     home_ps_t_label.grid(column=1, row=19)
+
+    home_ps_t_num_entry = tk.Entry(home_roster_grid, textvariable=home_ps_t_num_var, width=3)
+    home_ps_t_num_entry.grid(column=2, row=19)
 
     home_ps_u_label = tk.Label(home_roster_grid, text="Player:", font=("Arial", 12))
     home_ps_u_label.grid(column=0, row=20)
@@ -412,11 +515,17 @@ def new_game_():
     home_ps_u_label = tk.Entry(home_roster_grid, textvariable=home_ps_u_var)
     home_ps_u_label.grid(column=1, row=20)
 
+    home_ps_u_num_entry = tk.Entry(home_roster_grid, textvariable=home_ps_u_num_var, width=3)
+    home_ps_u_num_entry.grid(column=2, row=20)
+
     home_ps_v_label = tk.Label(home_roster_grid, text="Player:", font=("Arial", 12))
     home_ps_v_label.grid(column=0, row=21)
 
     home_ps_v_label = tk.Entry(home_roster_grid, textvariable=home_ps_v_var)
     home_ps_v_label.grid(column=1, row=21)
+
+    home_ps_v_num_entry = tk.Entry(home_roster_grid, textvariable=home_ps_v_num_var, width=3)
+    home_ps_v_num_entry.grid(column=2, row=21)
 
     home_ps_w_label = tk.Label(home_roster_grid, text="Player:", font=("Arial", 12))
     home_ps_w_label.grid(column=0, row=22)
@@ -424,11 +533,17 @@ def new_game_():
     home_ps_w_label = tk.Entry(home_roster_grid, textvariable=home_ps_w_var)
     home_ps_w_label.grid(column=1, row=22)
 
+    home_ps_w_num_entry = tk.Entry(home_roster_grid, textvariable=home_ps_w_num_var, width=3)
+    home_ps_w_num_entry.grid(column=2, row=22)
+
     home_ps_x_label = tk.Label(home_roster_grid, text="Player:", font=("Arial", 12))
     home_ps_x_label.grid(column=0, row=23)
 
     home_ps_x_label = tk.Entry(home_roster_grid, textvariable=home_ps_x_var)
     home_ps_x_label.grid(column=1, row=23)
+
+    home_ps_x_num_entry = tk.Entry(home_roster_grid, textvariable=home_ps_x_num_var, width=3)
+    home_ps_x_num_entry.grid(column=2, row=23)
 
     home_ps_y_label = tk.Label(home_roster_grid, text="Player:", font=("Arial", 12))
     home_ps_y_label.grid(column=0, row=24)
@@ -436,14 +551,261 @@ def new_game_():
     home_ps_y_label = tk.Entry(home_roster_grid, textvariable=home_ps_y_var)
     home_ps_y_label.grid(column=1, row=24)
 
+    home_ps_y_num_entry = tk.Entry(home_roster_grid, textvariable=home_ps_y_num_var, width=3)
+    home_ps_y_num_entry.grid(column=2, row=24)
+
     home_ps_z_label = tk.Label(home_roster_grid, text="Player:", font=("Arial", 12))
     home_ps_z_label.grid(column=0, row=25)
 
     home_ps_z_label = tk.Entry(home_roster_grid, textvariable=home_ps_z_var)
     home_ps_z_label.grid(column=1, row=25)
 
+    home_ps_z_num_entry = tk.Entry(home_roster_grid, textvariable=home_ps_z_num_var, width=3)
+    home_ps_z_num_entry.grid(column=2, row=25)
+
     home_roster_grid.pack()
-    home_roster_frame.pack(side=tk.TOP)
+    home_roster_frame.pack(side=tk.LEFT, padx=100)
+
+    away_roster_frame = tk.Frame(basic_setup)
+
+    away_roster_label = tk.Label(away_roster_frame, text="Away Team Roster", font=("Arial", 20))
+    away_roster_label.pack(padx=5, pady=10)
+
+    away_roster_grid = tk.Frame(away_roster_frame)
+    away_roster_grid.columnconfigure(0, weight=2)
+    away_roster_grid.columnconfigure(1, weight=2)
+    away_roster_grid.columnconfigure(2, weight=1)
+
+    away_coach_label = tk.Label(away_roster_grid, text="Coach:", font=("Arial", 12))
+    away_coach_label.grid(column=0, row=0)
+
+    away_coach_entry = tk.Entry(away_roster_grid, textvariable=away_coach_var)
+    away_coach_entry.grid(column=1, row=0)
+
+    away_acoach_label = tk.Label(away_roster_grid, text="Ast. Coach:", font=("Arial", 12))
+    away_acoach_label.grid(column=0, row=1)
+
+    away_acoach_entry = tk.Entry(away_roster_grid, textvariable=away_acoach_var)
+    away_acoach_entry.grid(column=1, row=1)
+
+    away_cap_label = tk.Label(away_roster_grid, text="Captain:", font=("Arial", 12))
+    away_cap_label.grid(column=0, row=2)
+
+    away_cap_entry = tk.Entry(away_roster_grid, textvariable=away_cap_var)
+    away_cap_entry.grid(column=1, row=2)
+
+    away_cap_num_entry = tk.Entry(away_roster_grid, textvariable=away_cap_num_var, width=3)
+    away_cap_num_entry.grid(column=2, row=2)
+
+    away_acap_label = tk.Label(away_roster_grid, text="Ast. Captain:", font=("Arial", 12))
+    away_acap_label.grid(column=0, row=3)
+
+    away_acap_entry = tk.Entry(away_roster_grid, textvariable=away_acap_var)
+    away_acap_entry.grid(column=1, row=3)
+
+    away_acap_num_entry = tk.Entry(away_roster_grid, textvariable=away_acap_num_var, width=3)
+    away_acap_num_entry.grid(column=2, row=3)
+
+    away_lib_e_label = tk.Label(away_roster_grid, text="Libero:", font=("Arial", 12))
+    away_lib_e_label.grid(column=0, row=4)
+
+    away_lib_e_entry = tk.Entry(away_roster_grid, textvariable=away_lib_e_var)
+    away_lib_e_entry.grid(column=1, row=4)
+
+    away_lib_e_num_entry = tk.Entry(away_roster_grid, textvariable=away_lib_e_num_var, width=3)
+    away_lib_e_num_entry.grid(column=2, row=4)
+
+    away_lib_f_label = tk.Label(away_roster_grid, text="Libero:", font=("Arial", 12))
+    away_lib_f_label.grid(column=0, row=5)
+
+    away_lib_f_entry = tk.Entry(away_roster_grid, textvariable=away_lib_f_var)
+    away_lib_f_entry.grid(column=1, row=5)
+
+    away_lib_f_num_entry = tk.Entry(away_roster_grid, textvariable=away_lib_f_num_var, width=3)
+    away_lib_f_num_entry.grid(column=2, row=5)
+
+    away_ps_g_label = tk.Label(away_roster_grid, text="Player:", font=("Arial", 12))
+    away_ps_g_label.grid(column=0, row=6)
+
+    away_ps_g_label = tk.Entry(away_roster_grid, textvariable=away_ps_g_var)
+    away_ps_g_label.grid(column=1, row=6)
+
+    away_ps_g_num_entry = tk.Entry(away_roster_grid, textvariable=away_ps_g_num_var, width=3)
+    away_ps_g_num_entry.grid(column=2, row=6)
+
+    away_ps_h_label = tk.Label(away_roster_grid, text="Player:", font=("Arial", 12))
+    away_ps_h_label.grid(column=0, row=7)
+
+    away_ps_h_label = tk.Entry(away_roster_grid, textvariable=away_ps_h_var)
+    away_ps_h_label.grid(column=1, row=7)
+
+    away_ps_h_num_entry = tk.Entry(away_roster_grid, textvariable=away_ps_h_num_var, width=3)
+    away_ps_h_num_entry.grid(column=2, row=7)
+
+    away_ps_i_label = tk.Label(away_roster_grid, text="Player:", font=("Arial", 12))
+    away_ps_i_label.grid(column=0, row=8)
+
+    away_ps_i_label = tk.Entry(away_roster_grid, textvariable=away_ps_i_var)
+    away_ps_i_label.grid(column=1, row=8)
+
+    away_ps_i_num_entry = tk.Entry(away_roster_grid, textvariable=away_ps_i_num_var, width=3)
+    away_ps_i_num_entry.grid(column=2, row=8)
+
+    away_ps_j_label = tk.Label(away_roster_grid, text="Player:", font=("Arial", 12))
+    away_ps_j_label.grid(column=0, row=9)
+
+    away_ps_j_label = tk.Entry(away_roster_grid, textvariable=away_ps_j_var)
+    away_ps_j_label.grid(column=1, row=9)
+
+    away_ps_j_num_entry = tk.Entry(away_roster_grid, textvariable=away_ps_j_num_var, width=3)
+    away_ps_j_num_entry.grid(column=2, row=9)
+
+    away_ps_k_label = tk.Label(away_roster_grid, text="Player:", font=("Arial", 12))
+    away_ps_k_label.grid(column=0, row=10)
+
+    away_ps_k_label = tk.Entry(away_roster_grid, textvariable=away_ps_k_var)
+    away_ps_k_label.grid(column=1, row=10)
+
+    away_ps_k_num_entry = tk.Entry(away_roster_grid, textvariable=away_ps_k_num_var, width=3)
+    away_ps_k_num_entry.grid(column=2, row=10)
+
+    away_ps_l_label = tk.Label(away_roster_grid, text="Player:", font=("Arial", 12))
+    away_ps_l_label.grid(column=0, row=11)
+
+    away_ps_l_label = tk.Entry(away_roster_grid, textvariable=away_ps_l_var)
+    away_ps_l_label.grid(column=1, row=11)
+
+    away_ps_l_num_entry = tk.Entry(away_roster_grid, textvariable=away_ps_l_num_var, width=3)
+    away_ps_l_num_entry.grid(column=2, row=11)
+
+    away_ps_m_label = tk.Label(away_roster_grid, text="Player:", font=("Arial", 12))
+    away_ps_m_label.grid(column=0, row=12)
+
+    away_ps_m_label = tk.Entry(away_roster_grid, textvariable=away_ps_m_var)
+    away_ps_m_label.grid(column=1, row=12)
+
+    away_ps_m_num_entry = tk.Entry(away_roster_grid, textvariable=away_ps_m_num_var, width=3)
+    away_ps_m_num_entry.grid(column=2, row=12)
+
+    away_ps_n_label = tk.Label(away_roster_grid, text="Player:", font=("Arial", 12))
+    away_ps_n_label.grid(column=0, row=13)
+
+    away_ps_n_label = tk.Entry(away_roster_grid, textvariable=away_ps_n_var)
+    away_ps_n_label.grid(column=1, row=13)
+
+    away_ps_n_num_entry = tk.Entry(away_roster_grid, textvariable=away_ps_n_num_var, width=3)
+    away_ps_n_num_entry.grid(column=2, row=13)
+
+    away_ps_o_label = tk.Label(away_roster_grid, text="Player:", font=("Arial", 12))
+    away_ps_o_label.grid(column=0, row=14)
+
+    away_ps_o_label = tk.Entry(away_roster_grid, textvariable=away_ps_o_var)
+    away_ps_o_label.grid(column=1, row=14)
+
+    away_ps_o_num_entry = tk.Entry(away_roster_grid, textvariable=away_ps_o_num_var, width=3)
+    away_ps_o_num_entry.grid(column=2, row=14)
+
+    away_ps_p_label = tk.Label(away_roster_grid, text="Player:", font=("Arial", 12))
+    away_ps_p_label.grid(column=0, row=15)
+
+    away_ps_p_label = tk.Entry(away_roster_grid, textvariable=away_ps_p_var)
+    away_ps_p_label.grid(column=1, row=15)
+
+    away_ps_p_num_entry = tk.Entry(away_roster_grid, textvariable=away_ps_p_num_var, width=3)
+    away_ps_p_num_entry.grid(column=2, row=15)
+
+    away_ps_q_label = tk.Label(away_roster_grid, text="Player:", font=("Arial", 12))
+    away_ps_q_label.grid(column=0, row=16)
+
+    away_ps_q_label = tk.Entry(away_roster_grid, textvariable=away_ps_q_var)
+    away_ps_q_label.grid(column=1, row=16)
+
+    away_ps_q_num_entry = tk.Entry(away_roster_grid, textvariable=away_ps_q_num_var, width=3)
+    away_ps_q_num_entry.grid(column=2, row=16)
+
+    away_ps_r_label = tk.Label(away_roster_grid, text="Player:", font=("Arial", 12))
+    away_ps_r_label.grid(column=0, row=17)
+
+    away_ps_r_label = tk.Entry(away_roster_grid, textvariable=away_ps_r_var)
+    away_ps_r_label.grid(column=1, row=17)
+
+    away_ps_r_num_entry = tk.Entry(away_roster_grid, textvariable=away_ps_r_num_var, width=3)
+    away_ps_r_num_entry.grid(column=2, row=17)
+
+    away_ps_s_label = tk.Label(away_roster_grid, text="Player:", font=("Arial", 12))
+    away_ps_s_label.grid(column=0, row=18)
+
+    away_ps_s_label = tk.Entry(away_roster_grid, textvariable=away_ps_s_var)
+    away_ps_s_label.grid(column=1, row=18)
+
+    away_ps_s_num_entry = tk.Entry(away_roster_grid, textvariable=away_ps_s_num_var, width=3)
+    away_ps_s_num_entry.grid(column=2, row=18)
+
+    away_ps_t_label = tk.Label(away_roster_grid, text="Player:", font=("Arial", 12))
+    away_ps_t_label.grid(column=0, row=19)
+
+    away_ps_t_label = tk.Entry(away_roster_grid, textvariable=away_ps_t_var)
+    away_ps_t_label.grid(column=1, row=19)
+
+    away_ps_t_num_entry = tk.Entry(away_roster_grid, textvariable=away_ps_t_num_var, width=3)
+    away_ps_t_num_entry.grid(column=2, row=19)
+
+    away_ps_u_label = tk.Label(away_roster_grid, text="Player:", font=("Arial", 12))
+    away_ps_u_label.grid(column=0, row=20)
+
+    away_ps_u_label = tk.Entry(away_roster_grid, textvariable=away_ps_u_var)
+    away_ps_u_label.grid(column=1, row=20)
+
+    away_ps_u_num_entry = tk.Entry(away_roster_grid, textvariable=away_ps_u_num_var, width=3)
+    away_ps_u_num_entry.grid(column=2, row=20)
+
+    away_ps_v_label = tk.Label(away_roster_grid, text="Player:", font=("Arial", 12))
+    away_ps_v_label.grid(column=0, row=21)
+
+    away_ps_v_label = tk.Entry(away_roster_grid, textvariable=away_ps_v_var)
+    away_ps_v_label.grid(column=1, row=21)
+
+    away_ps_v_num_entry = tk.Entry(away_roster_grid, textvariable=away_ps_v_num_var, width=3)
+    away_ps_v_num_entry.grid(column=2, row=21)
+
+    away_ps_w_label = tk.Label(away_roster_grid, text="Player:", font=("Arial", 12))
+    away_ps_w_label.grid(column=0, row=22)
+
+    away_ps_w_label = tk.Entry(away_roster_grid, textvariable=away_ps_w_var)
+    away_ps_w_label.grid(column=1, row=22)
+
+    away_ps_w_num_entry = tk.Entry(away_roster_grid, textvariable=away_ps_w_num_var, width=3)
+    away_ps_w_num_entry.grid(column=2, row=22)
+
+    away_ps_x_label = tk.Label(away_roster_grid, text="Player:", font=("Arial", 12))
+    away_ps_x_label.grid(column=0, row=23)
+
+    away_ps_x_label = tk.Entry(away_roster_grid, textvariable=away_ps_x_var)
+    away_ps_x_label.grid(column=1, row=23)
+
+    away_ps_x_num_entry = tk.Entry(away_roster_grid, textvariable=away_ps_x_num_var, width=3)
+    away_ps_x_num_entry.grid(column=2, row=23)
+
+    away_ps_y_label = tk.Label(away_roster_grid, text="Player:", font=("Arial", 12))
+    away_ps_y_label.grid(column=0, row=24)
+
+    away_ps_y_label = tk.Entry(away_roster_grid, textvariable=away_ps_y_var)
+    away_ps_y_label.grid(column=1, row=24)
+
+    away_ps_y_num_entry = tk.Entry(away_roster_grid, textvariable=away_ps_y_num_var, width=3)
+    away_ps_y_num_entry.grid(column=2, row=24)
+
+    away_ps_z_label = tk.Label(away_roster_grid, text="Player:", font=("Arial", 12))
+    away_ps_z_label.grid(column=0, row=25)
+
+    away_ps_z_label = tk.Entry(away_roster_grid, textvariable=away_ps_z_var)
+    away_ps_z_label.grid(column=1, row=25)
+
+    away_ps_z_num_entry = tk.Entry(away_roster_grid, textvariable=away_ps_z_num_var, width=3)
+    away_ps_z_num_entry.grid(column=2, row=25)
+
+    away_roster_grid.pack()
+    away_roster_frame.pack(side=tk.RIGHT, padx=100)
 
     basic_setup.state('zoomed')
     basic_setup.mainloop()
