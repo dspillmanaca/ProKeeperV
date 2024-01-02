@@ -4,7 +4,6 @@ from tkinter import filedialog
 import re
 import json
 
-
 def new_game_():
     startup.destroy()
     basic_setup = tk.Tk()
@@ -194,6 +193,81 @@ def new_game_():
                                                defaultextension='*.rostr',
                                                title="Save Roster"), 'w') as file:
             file.write(home_roster_writer)
+
+    def validate_home_roster():
+        home_roster_errors = []
+        if len(home_coach_var.get()) == 0:
+            home_roster_errors.append("Home Coach is empty")
+        elif not re.match(r'^[A-Za-z\'\s\-]+$', home_coach_var.get()):
+            home_roster_errors.append("Invalid characters in Home Coach")
+        if len(home_acoach_var.get()) > 0 and not re.match(r'^[A-Za-z\'\s\-]+$', home_acoach_var.get()):
+            home_roster_errors.append("Invalid characters in Home Ast. Coach")
+        if len(home_cap_var.get()) == 0:
+            home_roster_errors.append("Home Captain is empty")
+        elif not re.match(r'^[A-Za-z\'\s\-]+$', home_cap_var.get()):
+            home_roster_errors.append("Invalid characters in Home Captain")
+        elif len(home_cap_num_var.get()) == 0:
+            home_roster_errors.append("No number for Home Captain")
+        if len(home_acap_var.get()) > 0 and not re.match(r'^[A-Za-z\'\s\-]+$', home_acap_var.get()):
+            home_roster_errors.append("Invalid characters in Home Ast. Captain")
+        elif len(home_acap_var.get()) > 0 and len(home_acap_num_var.get()) == 0:
+            home_roster_errors.append("No number for Home Ast. Captain")
+
+    def load_home_roster():
+        with open(filedialog.askopenfilename(filetypes=[('ProKeeper Volleyball Team Roster', '*.rostr')],
+                                             title="Open Roster"), 'r') as file:
+            home_roster_reader = file.read()
+            home_roster = json.loads(home_roster_reader)
+            home_coach_var.set(home_roster["Co"])
+            home_acoach_var.set(home_roster["ACo"])
+            home_cap_var.set(home_roster["Ca"])
+            home_cap_num_var.set(home_roster["CaNum"])
+            home_acap_var.set(home_roster["ACa"])
+            home_acap_num_var.set(home_roster["ACaNum"])
+            home_lib_e_var.set(home_roster["LE"])
+            home_lib_e_num_var.set(home_roster["LENum"])
+            home_lib_f_var.set(home_roster["LF"])
+            home_lib_f_num_var.set(home_roster["LFNum"])
+            home_ps_g_var.set(home_roster["PSG"])
+            home_ps_g_num_var.set(home_roster["PSGNum"])
+            home_ps_h_var.set(home_roster["PSH"])
+            home_ps_h_num_var.set(home_roster["PSHNum"])
+            home_ps_i_var.set(home_roster["PSI"])
+            home_ps_i_num_var.set(home_roster["PSINum"])
+            home_ps_j_var.set(home_roster["PSJ"])
+            home_ps_j_num_var.set(home_roster["PSJNum"])
+            home_ps_k_var.set(home_roster["PSK"])
+            home_ps_k_num_var.set(home_roster["PSKNum"])
+            home_ps_l_var.set(home_roster["PSL"])
+            home_ps_l_num_var.set(home_roster["PSLNum"])
+            home_ps_m_var.set(home_roster["PSM"])
+            home_ps_m_num_var.set(home_roster["PSMNum"])
+            home_ps_n_var.set(home_roster["PSN"])
+            home_ps_n_num_var.set(home_roster["PSNNum"])
+            home_ps_o_var.set(home_roster["PSO"])
+            home_ps_o_num_var.set(home_roster["PSONum"])
+            home_ps_p_var.set(home_roster["PSP"])
+            home_ps_p_num_var.set(home_roster["PSPNum"])
+            home_ps_q_var.set(home_roster["PSQ"])
+            home_ps_q_num_var.set(home_roster["PSQNum"])
+            home_ps_r_var.set(home_roster["PSR"])
+            home_ps_r_num_var.set(home_roster["PSRNum"])
+            home_ps_s_var.set(home_roster["PSS"])
+            home_ps_s_num_var.set(home_roster["PSSNum"])
+            home_ps_t_var.set(home_roster["PST"])
+            home_ps_t_num_var.set(home_roster["PSTNum"])
+            home_ps_u_var.set(home_roster["PSU"])
+            home_ps_u_num_var.set(home_roster["PSUNum"])
+            home_ps_v_var.set(home_roster["PSV"])
+            home_ps_v_num_var.set(home_roster["PSVNum"])
+            home_ps_w_var.set(home_roster["PSW"])
+            home_ps_w_num_var.set(home_roster["PSWNum"])
+            home_ps_x_var.set(home_roster["PSX"])
+            home_ps_x_num_var.set(home_roster["PSXNum"])
+            home_ps_y_var.set(home_roster["PSY"])
+            home_ps_y_num_var.set(home_roster["PSYNum"])
+            home_ps_z_var.set(home_roster["PSZ"])
+            home_ps_z_num_var.set(home_roster["PSZNum"])
 
 
     def commit_setup_data():
