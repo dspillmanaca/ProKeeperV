@@ -1,14 +1,13 @@
 import tkinter as tk
 from tkinter import filedialog
-# from PIL import Image, ImageTk
 import re
 import json
 
-def new_game_():
+
+def new_game_(startup):
     startup.destroy()
     basic_setup = tk.Tk()
     basic_setup.title("New Game Setup")
-#    basic_setup.geometry("1x1")
     new_game_setup = tk.Frame()
 
     date_var = tk.StringVar()
@@ -125,77 +124,18 @@ def new_game_():
     away_ps_y_num_var = tk.StringVar()
     away_ps_z_var = tk.StringVar()
     away_ps_z_num_var = tk.StringVar()
+    home_roster_errors = []
+    away_roster_errors = []
 
     def open_home_mascot():
         home_mascot_path = filedialog.askopenfilename(title="Open Team Image", filetypes=[("PNG Images", "*.png")])
         home_path_var.set(home_mascot_path)
 
     def open_away_mascot():
-         away_mascot_path = filedialog.askopenfilename(title="Open Team Image", filetypes=[("PNG Images", "*.png")])
-         away_path_var.set(away_mascot_path)
-
-    def save_home_roster():
-        home_roster = {
-            "Co": home_coach_var.get(),
-            "ACo": home_acoach_var.get(),
-            "Ca": home_cap_var.get(),
-            "CaNum": home_cap_num_var.get(),
-            "ACa": home_acap_var.get(),
-            "ACaNum": home_acap_num_var.get(),
-            "LE": home_lib_e_var.get(),
-            "LENum": home_lib_e_num_var.get(),
-            "LF": home_lib_f_var.get(),
-            "LFNum": home_lib_f_num_var.get(),
-            "PSG": home_ps_g_var.get(),
-            "PSGNum": home_ps_g_num_var.get(),
-            "PSH": home_ps_h_var.get(),
-            "PSHNum": home_ps_h_num_var.get(),
-            "PSI": home_ps_i_var.get(),
-            "PSINum": home_ps_i_num_var.get(),
-            "PSJ": home_ps_j_var.get(),
-            "PSJNum": home_ps_j_num_var.get(),
-            "PSK": home_ps_k_var.get(),
-            "PSKNum": home_ps_k_num_var.get(),
-            "PSL": home_ps_l_var.get(),
-            "PSLNum": home_ps_l_num_var.get(),
-            "PSM": home_ps_m_var.get(),
-            "PSMNum": home_ps_m_num_var.get(),
-            "PSN": home_ps_n_var.get(),
-            "PSNNum": home_ps_n_num_var.get(),
-            "PSO": home_ps_o_var.get(),
-            "PSONum": home_ps_o_num_var.get(),
-            "PSP": home_ps_p_var.get(),
-            "PSPNum": home_ps_p_num_var.get(),
-            "PSQ": home_ps_q_var.get(),
-            "PSQNum": home_ps_q_num_var.get(),
-            "PSR": home_ps_r_var.get(),
-            "PSRNum": home_ps_r_num_var.get(),
-            "PSS": home_ps_s_var.get(),
-            "PSSNum": home_ps_s_num_var.get(),
-            "PST": home_ps_t_var.get(),
-            "PSTNum": home_ps_t_num_var.get(),
-            "PSU": home_ps_u_var.get(),
-            "PSUNum": home_ps_u_num_var.get(),
-            "PSV": home_ps_v_var.get(),
-            "PSVNum": home_ps_v_num_var.get(),
-            "PSW": home_ps_w_var.get(),
-            "PSWNum": home_ps_w_num_var.get(),
-            "PSX": home_ps_x_var.get(),
-            "PSXNum": home_ps_x_num_var.get(),
-            "PSY": home_ps_y_var.get(),
-            "PSYNum": home_ps_y_num_var.get(),
-            "PSZ": home_ps_z_var.get(),
-            "PSZNum": home_ps_z_num_var.get(),
-        }
-        home_roster_writer = json.dumps(home_roster)
-        with open(filedialog.asksaveasfilename(initialfile=f"{home_name_var.get()}",
-                                               filetypes=[('ProKeeper Volleyball Team Roster', '*.rostr')],
-                                               defaultextension='*.rostr',
-                                               title="Save Roster"), 'w') as file:
-            file.write(home_roster_writer)
+        away_mascot_path = filedialog.askopenfilename(title="Open Team Image", filetypes=[("PNG Images", "*.png")])
+        away_path_var.set(away_mascot_path)
 
     def validate_home_roster():
-        home_roster_errors = []
         if len(home_coach_var.get()) == 0:
             home_roster_errors.append("Home Coach is empty")
         elif not re.match(r'^[A-Za-z\'\s\-]+$', home_coach_var.get()):
@@ -300,10 +240,77 @@ def new_game_():
             home_roster_errors.append("Invalid characters in Home Player (Z)")
         elif len(home_ps_z_var.get()) > 0 and len(home_ps_z_num_var.get()) == 0:
             home_roster_errors.append("No number for Home Player (Z)")
+        if home_roster_errors:
+            return False
+        else:
+            return True
+
+    def save_home_roster():
+        if validate_home_roster():
+            home_roster = {
+                "Co": home_coach_var.get(),
+                "ACo": home_acoach_var.get(),
+                "Ca": home_cap_var.get(),
+                "CaNum": home_cap_num_var.get(),
+                "ACa": home_acap_var.get(),
+                "ACaNum": home_acap_num_var.get(),
+                "LE": home_lib_e_var.get(),
+                "LENum": home_lib_e_num_var.get(),
+                "LF": home_lib_f_var.get(),
+                "LFNum": home_lib_f_num_var.get(),
+                "PSG": home_ps_g_var.get(),
+                "PSGNum": home_ps_g_num_var.get(),
+                "PSH": home_ps_h_var.get(),
+                "PSHNum": home_ps_h_num_var.get(),
+                "PSI": home_ps_i_var.get(),
+                "PSINum": home_ps_i_num_var.get(),
+                "PSJ": home_ps_j_var.get(),
+                "PSJNum": home_ps_j_num_var.get(),
+                "PSK": home_ps_k_var.get(),
+                "PSKNum": home_ps_k_num_var.get(),
+                "PSL": home_ps_l_var.get(),
+                "PSLNum": home_ps_l_num_var.get(),
+                "PSM": home_ps_m_var.get(),
+                "PSMNum": home_ps_m_num_var.get(),
+                "PSN": home_ps_n_var.get(),
+                "PSNNum": home_ps_n_num_var.get(),
+                "PSO": home_ps_o_var.get(),
+                "PSONum": home_ps_o_num_var.get(),
+                "PSP": home_ps_p_var.get(),
+                "PSPNum": home_ps_p_num_var.get(),
+                "PSQ": home_ps_q_var.get(),
+                "PSQNum": home_ps_q_num_var.get(),
+                "PSR": home_ps_r_var.get(),
+                "PSRNum": home_ps_r_num_var.get(),
+                "PSS": home_ps_s_var.get(),
+                "PSSNum": home_ps_s_num_var.get(),
+                "PST": home_ps_t_var.get(),
+                "PSTNum": home_ps_t_num_var.get(),
+                "PSU": home_ps_u_var.get(),
+                "PSUNum": home_ps_u_num_var.get(),
+                "PSV": home_ps_v_var.get(),
+                "PSVNum": home_ps_v_num_var.get(),
+                "PSW": home_ps_w_var.get(),
+                "PSWNum": home_ps_w_num_var.get(),
+                "PSX": home_ps_x_var.get(),
+                "PSXNum": home_ps_x_num_var.get(),
+                "PSY": home_ps_y_var.get(),
+                "PSYNum": home_ps_y_num_var.get(),
+                "PSZ": home_ps_z_var.get(),
+                "PSZNum": home_ps_z_num_var.get(),
+            }
+            home_roster_writer = json.dumps(home_roster)
+            with open(filedialog.asksaveasfilename(initialfile=f"{home_name_var.get()}",
+                                                   filetypes=[('ProKeeper Volleyball Team Roster', '*.rostr')],
+                                                   defaultextension='*.rostr',
+                                                   title="Save Roster"), 'w') as file:
+                file.write(home_roster_writer)
+        else:
+            tk.messagebox.showerror("Validation Error", "\n".join(home_roster_errors))
 
     def load_home_roster():
         with open(filedialog.askopenfilename(filetypes=[('ProKeeper Volleyball Team Roster', '*.rostr')],
-                                             title="Open Roster"), 'r') as file:
+                                             title="Open Roster")) as file:
             home_roster_reader = file.read()
             home_roster = json.loads(home_roster_reader)
             home_coach_var.set(home_roster["Co"])
@@ -357,6 +364,234 @@ def new_game_():
             home_ps_z_var.set(home_roster["PSZ"])
             home_ps_z_num_var.set(home_roster["PSZNum"])
 
+    def validate_away_roster():
+        if len(away_coach_var.get()) == 0:
+            away_roster_errors.append("Away Coach is empty")
+        elif not re.match(r'^[A-Za-z\'\s\-]+$', away_coach_var.get()):
+            away_roster_errors.append("Invalid characters in Away Coach")
+        if len(away_acoach_var.get()) > 0 and not re.match(r'^[A-Za-z\'\s\-]+$', away_acoach_var.get()):
+            away_roster_errors.append("Invalid characters in Away Ast. Coach")
+        if len(away_cap_var.get()) == 0:
+            away_roster_errors.append("Away Captain is empty")
+        elif not re.match(r'^[A-Za-z\'\s\-]+$', away_cap_var.get()):
+            away_roster_errors.append("Invalid characters in Away Captain")
+        elif len(away_cap_num_var.get()) == 0:
+            away_roster_errors.append("No number for Away Captain")
+        if len(away_acap_var.get()) > 0 and not re.match(r'^[A-Za-z\'\s\-]+$', away_acap_var.get()):
+            away_roster_errors.append("Invalid characters in Away Ast. Captain")
+        elif len(away_acap_var.get()) > 0 and len(away_acap_num_var.get()) == 0:
+            away_roster_errors.append("No number for Away Ast. Captain")
+        if len(away_lib_e_var.get()) > 0 and not re.match(r'^[A-Za-z\'\s\-]+$', away_lib_e_var.get()):
+            away_roster_errors.append("Invalid characters in Away Libero (E)")
+        elif len(away_lib_e_var.get()) > 0 and len(away_lib_e_num_var.get()) == 0:
+            away_roster_errors.append("No number for Away Libero (E)")
+        if len(away_lib_f_var.get()) > 0 and not re.match(r'^[A-Za-z\'\s\-]+$', away_lib_f_var.get()):
+            away_roster_errors.append("Invalid characters in Away Libero (F)")
+        elif len(away_lib_f_var.get()) > 0 and len(away_lib_f_num_var.get()) == 0:
+            away_roster_errors.append("No number for Away Libero (F)")
+        if len(away_ps_g_var.get()) > 0 and not re.match(r'^[A-Za-z\'\s\-]+$', away_ps_g_var.get()):
+            away_roster_errors.append("Invalid characters in Away Player (G)")
+        elif len(away_ps_g_var.get()) > 0 and len(away_ps_g_num_var.get()) == 0:
+            away_roster_errors.append("No number for Away Player (G)")
+        if len(away_ps_h_var.get()) > 0 and not re.match(r'^[A-Za-z\'\s\-]+$', away_ps_h_var.get()):
+            away_roster_errors.append("Invalid characters in Away Player (H)")
+        elif len(away_ps_h_var.get()) > 0 and len(away_ps_h_num_var.get()) == 0:
+            away_roster_errors.append("No number for Away Player (H)")
+        if len(away_ps_i_var.get()) > 0 and not re.match(r'^[A-Za-z\'\s\-]+$', away_ps_i_var.get()):
+            away_roster_errors.append("Invalid characters in Away Player (I)")
+        elif len(away_ps_i_var.get()) > 0 and len(away_ps_i_num_var.get()) == 0:
+            away_roster_errors.append("No number for Away Player (I)")
+        if len(away_ps_j_var.get()) > 0 and not re.match(r'^[A-Za-z\'\s\-]+$', away_ps_j_var.get()):
+            away_roster_errors.append("Invalid characters in Away Player (J)")
+        elif len(away_ps_j_var.get()) > 0 and len(away_ps_j_num_var.get()) == 0:
+            away_roster_errors.append("No number for Away Player (J)")
+        if len(away_ps_k_var.get()) > 0 and not re.match(r'^[A-Za-z\'\s\-]+$', away_ps_k_var.get()):
+            away_roster_errors.append("Invalid characters in Away Player (K)")
+        elif len(away_ps_k_var.get()) > 0 and len(away_ps_k_num_var.get()) == 0:
+            away_roster_errors.append("No number for Away Player (K)")
+        if len(away_ps_l_var.get()) > 0 and not re.match(r'^[A-Za-z\'\s\-]+$', away_ps_l_var.get()):
+            away_roster_errors.append("Invalid characters in Away Player (L)")
+        elif len(away_ps_l_var.get()) > 0 and len(away_ps_l_num_var.get()) == 0:
+            away_roster_errors.append("No number for Away Player (L)")
+        if len(away_ps_m_var.get()) > 0 and not re.match(r'^[A-Za-z\'\s\-]+$', away_ps_m_var.get()):
+            away_roster_errors.append("Invalid characters in Away Player (M)")
+        elif len(away_ps_m_var.get()) > 0 and len(away_ps_m_num_var.get()) == 0:
+            away_roster_errors.append("No number for Away Player (M)")
+        if len(away_ps_n_var.get()) > 0 and not re.match(r'^[A-Za-z\'\s\-]+$', away_ps_n_var.get()):
+            away_roster_errors.append("Invalid characters in Away Player (N)")
+        elif len(away_ps_n_var.get()) > 0 and len(away_ps_n_num_var.get()) == 0:
+            away_roster_errors.append("No number for Away Player (N)")
+        if len(away_ps_o_var.get()) > 0 and not re.match(r'^[A-Za-z\'\s\-]+$', away_ps_o_var.get()):
+            away_roster_errors.append("Invalid characters in Away Player (O)")
+        elif len(away_ps_o_var.get()) > 0 and len(away_ps_o_num_var.get()) == 0:
+            away_roster_errors.append("No number for Away Player (O)")
+        if len(away_ps_p_var.get()) > 0 and not re.match(r'^[A-Za-z\'\s\-]+$', away_ps_p_var.get()):
+            away_roster_errors.append("Invalid characters in Away Player (P)")
+        elif len(away_ps_p_var.get()) > 0 and len(away_ps_p_num_var.get()) == 0:
+            away_roster_errors.append("No number for Away Player (P)")
+        if len(away_ps_q_var.get()) > 0 and not re.match(r'^[A-Za-z\'\s\-]+$', away_ps_q_var.get()):
+            away_roster_errors.append("Invalid characters in Away Player (Q)")
+        elif len(away_ps_q_var.get()) > 0 and len(away_ps_q_num_var.get()) == 0:
+            away_roster_errors.append("No number for Away Player (Q)")
+        if len(away_ps_r_var.get()) > 0 and not re.match(r'^[A-Za-z\'\s\-]+$', away_ps_r_var.get()):
+            away_roster_errors.append("Invalid characters in Away Player (R)")
+        elif len(away_ps_r_var.get()) > 0 and len(away_ps_r_num_var.get()) == 0:
+            away_roster_errors.append("No number for Away Player (R)")
+        if len(away_ps_s_var.get()) > 0 and not re.match(r'^[A-Za-z\'\s\-]+$', away_ps_s_var.get()):
+            away_roster_errors.append("Invalid characters in Away Player (S)")
+        elif len(away_ps_s_var.get()) > 0 and len(away_ps_s_num_var.get()) == 0:
+            away_roster_errors.append("No number for Away Player (S)")
+        if len(away_ps_t_var.get()) > 0 and not re.match(r'^[A-Za-z\'\s\-]+$', away_ps_t_var.get()):
+            away_roster_errors.append("Invalid characters in Away Player (T)")
+        elif len(away_ps_t_var.get()) > 0 and len(away_ps_t_num_var.get()) == 0:
+            away_roster_errors.append("No number for Away Player (T)")
+        if len(away_ps_u_var.get()) > 0 and not re.match(r'^[A-Za-z\'\s\-]+$', away_ps_u_var.get()):
+            away_roster_errors.append("Invalid characters in Away Player (U)")
+        elif len(away_ps_u_var.get()) > 0 and len(away_ps_u_num_var.get()) == 0:
+            away_roster_errors.append("No number for Away Player (U)")
+        if len(away_ps_v_var.get()) > 0 and not re.match(r'^[A-Za-z\'\s\-]+$', away_ps_v_var.get()):
+            away_roster_errors.append("Invalid characters in Away Player (V)")
+        elif len(away_ps_v_var.get()) > 0 and len(away_ps_v_num_var.get()) == 0:
+            away_roster_errors.append("No number for Away Player (V)")
+        if len(away_ps_w_var.get()) > 0 and not re.match(r'^[A-Za-z\'\s\-]+$', away_ps_w_var.get()):
+            away_roster_errors.append("Invalid characters in Away Player (W)")
+        elif len(away_ps_w_var.get()) > 0 and len(away_ps_w_num_var.get()) == 0:
+            away_roster_errors.append("No number for Away Player (W)")
+        if len(away_ps_x_var.get()) > 0 and not re.match(r'^[A-Za-z\'\s\-]+$', away_ps_x_var.get()):
+            away_roster_errors.append("Invalid characters in Away Player (X)")
+        elif len(away_ps_x_var.get()) > 0 and len(away_ps_x_num_var.get()) == 0:
+            away_roster_errors.append("No number for Away Player (X)")
+        if len(away_ps_y_var.get()) > 0 and not re.match(r'^[A-Za-z\'\s\-]+$', away_ps_y_var.get()):
+            away_roster_errors.append("Invalid characters in Away Player (Y)")
+        elif len(away_ps_y_var.get()) > 0 and len(away_ps_y_num_var.get()) == 0:
+            away_roster_errors.append("No number for Away Player (Y)")
+        if len(away_ps_z_var.get()) > 0 and not re.match(r'^[A-Za-z\'\s\-]+$', away_ps_z_var.get()):
+            away_roster_errors.append("Invalid characters in Away Player (Z)")
+        elif len(away_ps_z_var.get()) > 0 and len(away_ps_z_num_var.get()) == 0:
+            away_roster_errors.append("No number for Away Player (Z)")
+        if away_roster_errors:
+            return False
+        else:
+            return True
+
+    def save_away_roster():
+        if validate_away_roster():
+            away_roster = {
+                "Co": away_coach_var.get(),
+                "ACo": away_acoach_var.get(),
+                "Ca": away_cap_var.get(),
+                "CaNum": away_cap_num_var.get(),
+                "ACa": away_acap_var.get(),
+                "ACaNum": away_acap_num_var.get(),
+                "LE": away_lib_e_var.get(),
+                "LENum": away_lib_e_num_var.get(),
+                "LF": away_lib_f_var.get(),
+                "LFNum": away_lib_f_num_var.get(),
+                "PSG": away_ps_g_var.get(),
+                "PSGNum": away_ps_g_num_var.get(),
+                "PSH": away_ps_h_var.get(),
+                "PSHNum": away_ps_h_num_var.get(),
+                "PSI": away_ps_i_var.get(),
+                "PSINum": away_ps_i_num_var.get(),
+                "PSJ": away_ps_j_var.get(),
+                "PSJNum": away_ps_j_num_var.get(),
+                "PSK": away_ps_k_var.get(),
+                "PSKNum": away_ps_k_num_var.get(),
+                "PSL": away_ps_l_var.get(),
+                "PSLNum": away_ps_l_num_var.get(),
+                "PSM": away_ps_m_var.get(),
+                "PSMNum": away_ps_m_num_var.get(),
+                "PSN": away_ps_n_var.get(),
+                "PSNNum": away_ps_n_num_var.get(),
+                "PSO": away_ps_o_var.get(),
+                "PSONum": away_ps_o_num_var.get(),
+                "PSP": away_ps_p_var.get(),
+                "PSPNum": away_ps_p_num_var.get(),
+                "PSQ": away_ps_q_var.get(),
+                "PSQNum": away_ps_q_num_var.get(),
+                "PSR": away_ps_r_var.get(),
+                "PSRNum": away_ps_r_num_var.get(),
+                "PSS": away_ps_s_var.get(),
+                "PSSNum": away_ps_s_num_var.get(),
+                "PST": away_ps_t_var.get(),
+                "PSTNum": away_ps_t_num_var.get(),
+                "PSU": away_ps_u_var.get(),
+                "PSUNum": away_ps_u_num_var.get(),
+                "PSV": away_ps_v_var.get(),
+                "PSVNum": away_ps_v_num_var.get(),
+                "PSW": away_ps_w_var.get(),
+                "PSWNum": away_ps_w_num_var.get(),
+                "PSX": away_ps_x_var.get(),
+                "PSXNum": away_ps_x_num_var.get(),
+                "PSY": away_ps_y_var.get(),
+                "PSYNum": away_ps_y_num_var.get(),
+                "PSZ": away_ps_z_var.get(),
+                "PSZNum": away_ps_z_num_var.get(),
+            }
+            away_roster_writer = json.dumps(away_roster)
+            with open(filedialog.asksaveasfilename(initialfile=f"{away_name_var.get()}",
+                                                   filetypes=[('ProKeeper Volleyball Team Roster', '*.rostr')],
+                                                   defaultextension='*.rostr',
+                                                   title="Save Roster"), 'w') as file:
+                file.write(away_roster_writer)
+        else:
+            tk.messagebox.showerror("Validation Error", "\n".join(away_roster_errors))
+
+    def load_away_roster():
+        with open(filedialog.askopenfilename(filetypes=[('ProKeeper Volleyball Team Roster', '*.rostr')],
+                                             title="Open Roster")) as file:
+            away_roster_reader = file.read()
+            away_roster = json.loads(away_roster_reader)
+            away_coach_var.set(away_roster["Co"])
+            away_acoach_var.set(away_roster["ACo"])
+            away_cap_var.set(away_roster["Ca"])
+            away_cap_num_var.set(away_roster["CaNum"])
+            away_acap_var.set(away_roster["ACa"])
+            away_acap_num_var.set(away_roster["ACaNum"])
+            away_lib_e_var.set(away_roster["LE"])
+            away_lib_e_num_var.set(away_roster["LENum"])
+            away_lib_f_var.set(away_roster["LF"])
+            away_lib_f_num_var.set(away_roster["LFNum"])
+            away_ps_g_var.set(away_roster["PSG"])
+            away_ps_g_num_var.set(away_roster["PSGNum"])
+            away_ps_h_var.set(away_roster["PSH"])
+            away_ps_h_num_var.set(away_roster["PSHNum"])
+            away_ps_i_var.set(away_roster["PSI"])
+            away_ps_i_num_var.set(away_roster["PSINum"])
+            away_ps_j_var.set(away_roster["PSJ"])
+            away_ps_j_num_var.set(away_roster["PSJNum"])
+            away_ps_k_var.set(away_roster["PSK"])
+            away_ps_k_num_var.set(away_roster["PSKNum"])
+            away_ps_l_var.set(away_roster["PSL"])
+            away_ps_l_num_var.set(away_roster["PSLNum"])
+            away_ps_m_var.set(away_roster["PSM"])
+            away_ps_m_num_var.set(away_roster["PSMNum"])
+            away_ps_n_var.set(away_roster["PSN"])
+            away_ps_n_num_var.set(away_roster["PSNNum"])
+            away_ps_o_var.set(away_roster["PSO"])
+            away_ps_o_num_var.set(away_roster["PSONum"])
+            away_ps_p_var.set(away_roster["PSP"])
+            away_ps_p_num_var.set(away_roster["PSPNum"])
+            away_ps_q_var.set(away_roster["PSQ"])
+            away_ps_q_num_var.set(away_roster["PSQNum"])
+            away_ps_r_var.set(away_roster["PSR"])
+            away_ps_r_num_var.set(away_roster["PSRNum"])
+            away_ps_s_var.set(away_roster["PSS"])
+            away_ps_s_num_var.set(away_roster["PSSNum"])
+            away_ps_t_var.set(away_roster["PST"])
+            away_ps_t_num_var.set(away_roster["PSTNum"])
+            away_ps_u_var.set(away_roster["PSU"])
+            away_ps_u_num_var.set(away_roster["PSUNum"])
+            away_ps_v_var.set(away_roster["PSV"])
+            away_ps_v_num_var.set(away_roster["PSVNum"])
+            away_ps_w_var.set(away_roster["PSW"])
+            away_ps_w_num_var.set(away_roster["PSWNum"])
+            away_ps_x_var.set(away_roster["PSX"])
+            away_ps_x_num_var.set(away_roster["PSXNum"])
+            away_ps_y_var.set(away_roster["PSY"])
+            away_ps_y_num_var.set(away_roster["PSYNum"])
+            away_ps_z_var.set(away_roster["PSZ"])
+            away_ps_z_num_var.set(away_roster["PSZNum"])
 
     def commit_setup_data():
         basic_data = {
@@ -381,7 +616,7 @@ def new_game_():
         _{basic_data['Away Team Code']}_at_{basic_data['Home Team Code']}.json""",
                                                title="Save Game",
                                                filetypes=[('ProKeeper Volleyball Game', '*.pkvgame')],
-                                               defaultextension='*.pkvgame',), 'w') as file:
+                                               defaultextension='*.pkvgame', ), 'w') as file:
             file.write(json_writer)
 
     def validate_setup():
@@ -389,11 +624,11 @@ def new_game_():
         if len(date_var.get()) == 0:
             errors.append("Date is empty")
         elif not re.match(r'^(0[1-9]|1[0-2])/(0[1-9]|[12][0-9]|3[01])/\d{4}$', date_var.get()):
-            errors.append("Invalid date: "+date_var.get())
+            errors.append("Invalid date: " + date_var.get())
         if len(time_var.get()) == 0:
             errors.append("Time is empty")
         elif not re.match(r'^(0[1-9]|1[0-2]):[0-5][0-9]\s(?:AM|PM)$', time_var.get()):
-            errors.append("Invalid time: "+time_var.get())
+            errors.append("Invalid time: " + time_var.get())
         if len(location_var.get()) == 0:
             errors.append("Location is empty")
         elif not re.match(r'^[\dA-Za-z\'\s\-]+$', location_var.get()):
@@ -413,26 +648,19 @@ def new_game_():
         if len(home_code_var.get()) == 0:
             errors.append("Home Code is empty")
         elif not re.match(r'^[A-Z]{3}$', home_code_var.get()):
-            errors.append("Home Code format is invalid: "+home_code_var.get())
+            errors.append("Home Code format is invalid: " + home_code_var.get())
         if len(away_name_var.get()) == 0:
             errors.append("Away Team Name is empty")
         if len(away_code_var.get()) == 0:
             errors.append("Away Code is empty")
         elif not re.match(r'^[A-Z]{3}$', away_code_var.get()):
-            errors.append("Away Code format is invalid: "+away_code_var.get())
+            errors.append("Away Code format is invalid: " + away_code_var.get())
+        if not validate_home_roster():
+            for hre in home_roster_errors:
+                errors.append(hre)
         if errors:
             tk.messagebox.showerror("Validation Error", "\n".join(errors))
         else:
-            if len(down_referee_var.get()) == 0:
-                down_referee_var.set("N/A")
-            if len(home_mascot_var.get()) == 0:
-                home_mascot_var.set("N/A")
-            if len(home_path_var.get()) == 0:
-                home_path_var.set("N/A")
-            if len(away_mascot_var.get()) == 0:
-                away_mascot_var.set("N/A")
-            if len(away_path_var.get()) == 0:
-                away_path_var.set("N/A")
             commit_setup_data()
 
     gen_info_label = tk.Label(new_game_setup, text="General Information", font=("Arial", 20))
@@ -509,13 +737,13 @@ def new_game_():
     home_label4.grid(row=3, column=0)
 
     home_logo = tk.Button(home_info_grid, text="Upload", font=("Arial", 10), command=open_home_mascot)
-    home_logo.grid(row=3, column=1, sticky=tk.W+tk.E, padx=10)
+    home_logo.grid(row=3, column=1, sticky=tk.W + tk.E, padx=10)
 
     home_load_roster = tk.Button(home_info_grid, text="Load Roster", font=("Arial", 10), command=load_home_roster)
-    home_load_roster.grid(row=4, column=0, sticky=tk.W+tk.E)
+    home_load_roster.grid(row=4, column=0, sticky=tk.W + tk.E)
 
     home_save_roster = tk.Button(home_info_grid, text="Save Roster", font=("Arial", 10), command=save_home_roster)
-    home_save_roster.grid(row=4, column=1, sticky=tk.W+tk.E)
+    home_save_roster.grid(row=4, column=1, sticky=tk.W + tk.E)
 
     home_info_grid.pack(fill='x')
 
@@ -548,7 +776,13 @@ def new_game_():
     away_label4.grid(row=3, column=0)
 
     away_logo = tk.Button(away_info_grid, text="Upload", font=("Arial", 10), command=open_away_mascot)
-    away_logo.grid(row=3, column=1, sticky=tk.W+tk.E, padx=10)
+    away_logo.grid(row=3, column=1, sticky=tk.W + tk.E, padx=10)
+
+    away_load_roster = tk.Button(away_info_grid, text="Load Roster", font=("Arial", 10), command=load_away_roster)
+    away_load_roster.grid(row=4, column=0, sticky=tk.W + tk.E)
+
+    away_save_roster = tk.Button(away_info_grid, text="Save Roster", font=("Arial", 10), command=save_away_roster)
+    away_save_roster.grid(row=4, column=1, sticky=tk.W + tk.E)
 
     away_info_grid.pack(fill='x')
 
@@ -1048,7 +1282,6 @@ def load_game():
 
 
 def startup_window():
-    global startup
     startup = tk.Tk()
     startup.title("PKV")
     startup.geometry("300x250")
@@ -1056,7 +1289,7 @@ def startup_window():
     startup_label = tk.Label(text="ProKeeper for Volleyball", font=("Arial", 18))
     startup_label.pack(padx=5, pady=25)
 
-    new_game_button = tk.Button(startup, text="New Game", font=("Arial", 14), command=new_game_)
+    new_game_button = tk.Button(startup, text="New Game", font=("Arial", 14), command=lambda: new_game_(startup))
     new_game_button.pack(padx=5, pady=10)
 
     load_game_button = tk.Button(startup, text="Load Game", font=("Arial", 14), command=load_game)
