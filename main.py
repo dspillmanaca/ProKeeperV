@@ -212,6 +212,94 @@ def new_game_():
             home_roster_errors.append("Invalid characters in Home Ast. Captain")
         elif len(home_acap_var.get()) > 0 and len(home_acap_num_var.get()) == 0:
             home_roster_errors.append("No number for Home Ast. Captain")
+        if len(home_lib_e_var.get()) > 0 and not re.match(r'^[A-Za-z\'\s\-]+$', home_lib_e_var.get()):
+            home_roster_errors.append("Invalid characters in Home Libero (E)")
+        elif len(home_lib_e_var.get()) > 0 and len(home_lib_e_num_var.get()) == 0:
+            home_roster_errors.append("No number for Home Libero (E)")
+        if len(home_lib_f_var.get()) > 0 and not re.match(r'^[A-Za-z\'\s\-]+$', home_lib_f_var.get()):
+            home_roster_errors.append("Invalid characters in Home Libero (F)")
+        elif len(home_lib_f_var.get()) > 0 and len(home_lib_f_num_var.get()) == 0:
+            home_roster_errors.append("No number for Home Libero (F)")
+        if len(home_ps_g_var.get()) > 0 and not re.match(r'^[A-Za-z\'\s\-]+$', home_ps_g_var.get()):
+            home_roster_errors.append("Invalid characters in Home Player (G)")
+        elif len(home_ps_g_var.get()) > 0 and len(home_ps_g_num_var.get()) == 0:
+            home_roster_errors.append("No number for Home Player (G)")
+        if len(home_ps_h_var.get()) > 0 and not re.match(r'^[A-Za-z\'\s\-]+$', home_ps_h_var.get()):
+            home_roster_errors.append("Invalid characters in Home Player (H)")
+        elif len(home_ps_h_var.get()) > 0 and len(home_ps_h_num_var.get()) == 0:
+            home_roster_errors.append("No number for Home Player (H)")
+        if len(home_ps_i_var.get()) > 0 and not re.match(r'^[A-Za-z\'\s\-]+$', home_ps_i_var.get()):
+            home_roster_errors.append("Invalid characters in Home Player (I)")
+        elif len(home_ps_i_var.get()) > 0 and len(home_ps_i_num_var.get()) == 0:
+            home_roster_errors.append("No number for Home Player (I)")
+        if len(home_ps_j_var.get()) > 0 and not re.match(r'^[A-Za-z\'\s\-]+$', home_ps_j_var.get()):
+            home_roster_errors.append("Invalid characters in Home Player (J)")
+        elif len(home_ps_j_var.get()) > 0 and len(home_ps_j_num_var.get()) == 0:
+            home_roster_errors.append("No number for Home Player (J)")
+        if len(home_ps_k_var.get()) > 0 and not re.match(r'^[A-Za-z\'\s\-]+$', home_ps_k_var.get()):
+            home_roster_errors.append("Invalid characters in Home Player (K)")
+        elif len(home_ps_k_var.get()) > 0 and len(home_ps_k_num_var.get()) == 0:
+            home_roster_errors.append("No number for Home Player (K)")
+        if len(home_ps_l_var.get()) > 0 and not re.match(r'^[A-Za-z\'\s\-]+$', home_ps_l_var.get()):
+            home_roster_errors.append("Invalid characters in Home Player (L)")
+        elif len(home_ps_l_var.get()) > 0 and len(home_ps_l_num_var.get()) == 0:
+            home_roster_errors.append("No number for Home Player (L)")
+        if len(home_ps_m_var.get()) > 0 and not re.match(r'^[A-Za-z\'\s\-]+$', home_ps_m_var.get()):
+            home_roster_errors.append("Invalid characters in Home Player (M)")
+        elif len(home_ps_m_var.get()) > 0 and len(home_ps_m_num_var.get()) == 0:
+            home_roster_errors.append("No number for Home Player (M)")
+        if len(home_ps_n_var.get()) > 0 and not re.match(r'^[A-Za-z\'\s\-]+$', home_ps_n_var.get()):
+            home_roster_errors.append("Invalid characters in Home Player (N)")
+        elif len(home_ps_n_var.get()) > 0 and len(home_ps_n_num_var.get()) == 0:
+            home_roster_errors.append("No number for Home Player (N)")
+        if len(home_ps_o_var.get()) > 0 and not re.match(r'^[A-Za-z\'\s\-]+$', home_ps_o_var.get()):
+            home_roster_errors.append("Invalid characters in Home Player (O)")
+        elif len(home_ps_o_var.get()) > 0 and len(home_ps_o_num_var.get()) == 0:
+            home_roster_errors.append("No number for Home Player (O)")
+        if len(home_ps_p_var.get()) > 0 and not re.match(r'^[A-Za-z\'\s\-]+$', home_ps_p_var.get()):
+            home_roster_errors.append("Invalid characters in Home Player (P)")
+        elif len(home_ps_p_var.get()) > 0 and len(home_ps_p_num_var.get()) == 0:
+            home_roster_errors.append("No number for Home Player (P)")
+        if len(home_ps_q_var.get()) > 0 and not re.match(r'^[A-Za-z\'\s\-]+$', home_ps_q_var.get()):
+            home_roster_errors.append("Invalid characters in Home Player (Q)")
+        elif len(home_ps_q_var.get()) > 0 and len(home_ps_q_num_var.get()) == 0:
+            home_roster_errors.append("No number for Home Player (Q)")
+        if len(home_ps_r_var.get()) > 0 and not re.match(r'^[A-Za-z\'\s\-]+$', home_ps_r_var.get()):
+            home_roster_errors.append("Invalid characters in Home Player (R)")
+        elif len(home_ps_r_var.get()) > 0 and len(home_ps_r_num_var.get()) == 0:
+            home_roster_errors.append("No number for Home Player (R)")
+        if len(home_ps_s_var.get()) > 0 and not re.match(r'^[A-Za-z\'\s\-]+$', home_ps_s_var.get()):
+            home_roster_errors.append("Invalid characters in Home Player (S)")
+        elif len(home_ps_s_var.get()) > 0 and len(home_ps_s_num_var.get()) == 0:
+            home_roster_errors.append("No number for Home Player (S)")
+        if len(home_ps_t_var.get()) > 0 and not re.match(r'^[A-Za-z\'\s\-]+$', home_ps_t_var.get()):
+            home_roster_errors.append("Invalid characters in Home Player (T)")
+        elif len(home_ps_t_var.get()) > 0 and len(home_ps_t_num_var.get()) == 0:
+            home_roster_errors.append("No number for Home Player (T)")
+        if len(home_ps_u_var.get()) > 0 and not re.match(r'^[A-Za-z\'\s\-]+$', home_ps_u_var.get()):
+            home_roster_errors.append("Invalid characters in Home Player (U)")
+        elif len(home_ps_u_var.get()) > 0 and len(home_ps_u_num_var.get()) == 0:
+            home_roster_errors.append("No number for Home Player (U)")
+        if len(home_ps_v_var.get()) > 0 and not re.match(r'^[A-Za-z\'\s\-]+$', home_ps_v_var.get()):
+            home_roster_errors.append("Invalid characters in Home Player (V)")
+        elif len(home_ps_v_var.get()) > 0 and len(home_ps_v_num_var.get()) == 0:
+            home_roster_errors.append("No number for Home Player (V)")
+        if len(home_ps_w_var.get()) > 0 and not re.match(r'^[A-Za-z\'\s\-]+$', home_ps_w_var.get()):
+            home_roster_errors.append("Invalid characters in Home Player (W)")
+        elif len(home_ps_w_var.get()) > 0 and len(home_ps_w_num_var.get()) == 0:
+            home_roster_errors.append("No number for Home Player (W)")
+        if len(home_ps_x_var.get()) > 0 and not re.match(r'^[A-Za-z\'\s\-]+$', home_ps_x_var.get()):
+            home_roster_errors.append("Invalid characters in Home Player (X)")
+        elif len(home_ps_x_var.get()) > 0 and len(home_ps_x_num_var.get()) == 0:
+            home_roster_errors.append("No number for Home Player (X)")
+        if len(home_ps_y_var.get()) > 0 and not re.match(r'^[A-Za-z\'\s\-]+$', home_ps_y_var.get()):
+            home_roster_errors.append("Invalid characters in Home Player (Y)")
+        elif len(home_ps_y_var.get()) > 0 and len(home_ps_y_num_var.get()) == 0:
+            home_roster_errors.append("No number for Home Player (Y)")
+        if len(home_ps_z_var.get()) > 0 and not re.match(r'^[A-Za-z\'\s\-]+$', home_ps_z_var.get()):
+            home_roster_errors.append("Invalid characters in Home Player (Z)")
+        elif len(home_ps_z_var.get()) > 0 and len(home_ps_z_num_var.get()) == 0:
+            home_roster_errors.append("No number for Home Player (Z)")
 
     def load_home_roster():
         with open(filedialog.askopenfilename(filetypes=[('ProKeeper Volleyball Team Roster', '*.rostr')],
